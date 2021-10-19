@@ -1,2 +1,0 @@
-libft = ../libft/
-ft_printf = ../printf/
