@@ -7,11 +7,37 @@
 # include <stdio.h>
 # include "dummyheaders.h"
 
-typedef struct s_case {
-	void **inputs;
-	void *expected;
-	char *output;
-}	t_case;
+# define arraysize(X) sizeof(X)/sizeof(X[0])
+
+typedef void (*Run)(int a);
+typedef bool (*Exists)();
+typedef int (*Tests)();
+
+typedef enum {
+	LIBFT,
+	PRINTF,
+	GNL
+} tester;
+
+typedef struct {
+	Run run;
+	Exists exists;
+	Tests tests;
+	char	*name;
+	bool	bonus;
+} testfunc;
+
+//universal test funcs
+int testcount(tester t);
+testfunc *gettest(tester t, int n);
+
+//libft test funcs
+int		tests_isalpha();
+bool	exists_isalpha();
+void	test_isalpha(int n);
+int		tests_isdigit();
+bool	exists_isdigit();
+void	test_isdigit(int n);
 
 //Write Chk Funcs
 bool	checkoutput(char *compare, int len);

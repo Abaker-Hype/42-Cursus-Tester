@@ -1,13 +1,16 @@
 #ifndef DUMMY_HEADERS_H
 # define DUMMY_HEADERS_H
 
-//Libft Dummy
-typedef struct s_list
-{
-	void	*content;
-	struct s_list	*next;
+#ifdef LIBFT_H
+# include "libft.h"
+#else
+typedef struct s_list{
+	void *content;
+	struct s_list *next;
 }	t_list;
+#endif
 
+//Libft Dummy
 int		ft_isalpha(int c) __attribute__((weak));
 int		ft_toupper(int c) __attribute__((weak));
 int		ft_isdigit(int c) __attribute__((weak));

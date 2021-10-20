@@ -15,7 +15,8 @@ INFO = Welcome to this pile of trash
 
 #compile
 CC = gcc
-FLAGS = -I$(INCS) -L$(USRFLS) -lft
+FLAGS = -I$(INCS) -I$(USRHDRS) -L$(USRFLS) -lft -undefined dynamic_lookup
+TESTC = `find ./tests/ -type f -name '*.c'`
 RUN = tester
 
 
@@ -29,11 +30,11 @@ ifeq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
 	@echo -n Making User Files...
 	@make -s -C $(USRFLS)
 	@echo Done
-	@$(CC) $(UTILS)* $(FLAGS) -o $(RUN)
+	@$(CC) $(UTILS)* $(TESTC) $(FLAGS) -o $(RUN)
 	@clear
 	@echo Beginning Tests
 	@./$(RUN) $(MAKECMDGOALS)
-	@rm -f $(RUN)
+	@rm -rf $(RUN) $(USRFLS) $(USRHDRS)
 else
 	@echo $(IVDTEST)
 endif
