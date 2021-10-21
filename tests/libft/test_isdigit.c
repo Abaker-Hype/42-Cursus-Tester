@@ -27,11 +27,7 @@ void	test_isdigit(int n)
 {
 	for (int start = isdigit_tests[n].start; start <= isdigit_tests[n].end; start++){
 		int resault = ft_isdigit(start);
-		if (resault != isdigit_tests[n].expected)
-		{
-			printf("F");
-			return ;
-		}
+		if (resault != isdigit_tests[n].expected)return;
 	}
-	printf("P");
+	setgrade(PASS);
 }

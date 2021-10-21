@@ -2,7 +2,9 @@
 
 testfunc libft[] = {
 	{&test_isalpha, &exists_isalpha, &tests_isalpha, "ft_isalpha", false},
-	{&test_isdigit, &exists_isdigit, &tests_isdigit, "ft_isdigit", false}
+	{&test_isdigit, &exists_isdigit, &tests_isdigit, "ft_isdigit", false},
+	{&test_isalnum, &exists_isalnum, &tests_isalnum, "ft_isalnum", false},
+	{&test_isascii, &exists_isascii, &tests_isascii, "ft_isascii", false}
 };
 
 int testcount(tester t)

@@ -21,5 +21,5 @@ bool exists_<name>()
 
 void	test_<name>(int n)
 {
-	
+	setgrade(PASS);
 }

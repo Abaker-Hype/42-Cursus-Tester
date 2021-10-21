@@ -31,11 +31,7 @@ void	test_isalpha(int n)
 {
 	for (int start = isalpha_test[n].start; start <= isalpha_test[n].end; start++){
 		int resault = ft_isalpha(start);
-		if (resault != isalpha_test[n].expected)
-		{
-			printf("F");
-			return ;
-		}
+		if (resault != isalpha_test[n].expected) return;
 	}
-	printf("P");
+	setgrade(PASS);
 }

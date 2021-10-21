@@ -7,19 +7,21 @@ static void	sighandler(int sig)
 {
 	switch (sig){
 		case SIGABRT :
-			printf("A");
+			setgrade(ABRT);
 			break;
 		case SIGSEGV :
-			printf("S");
+			setgrade(SEGV);
 			break;
 		case SIGALRM :
-			printf("T");
+			setgrade(TIME);
 			break ;
 		case SIGBUS :
-			printf("B");
+			setgrade(BUS);
 			break;
-		default :;
+		default :
+			exit(EXIT_FAILURE);;
 	}
+	printgrade();
 	exit(EXIT_FAILURE);
 }
 
@@ -34,22 +36,24 @@ static void setsignals()
 static void	testhandler(testfunc test)
 {
 	int tests = (*test.tests)();
-	printf("%-16s", test.name);
+	printf("%-16s\e[96m-\e[37m ", test.name);
 	if ((*test.exists)()) {
 		for (int i = 0; i < tests; i++) {
 			fflush(stdout);
 			pid_t tester = fork();
 			if (tester == 0){
 				setsignals();
+				if (hasleaks()) freeleaks();
 				alarm(2);
 				(*test.run)(i);
 				alarm(0);
+				printgrade();
 				exit(EXIT_SUCCESS);
 			} else 
 			waitpid(tester, NULL, 0);
 		}
 	} else
-		printf("NTI");
+		printf("\e[41mNTI\e[37m");
 	printf("\n");
 }
 
@@ -60,7 +64,7 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	printf("Run tests for %s\n", argv[1]);
-	printf("---FUNCTION---    ---TEST---\n");
+	printf("\e[96m---FUNCTION---    ---TEST---\e[37m\n");
 	int tests = testcount(LIBFT);
 	for (int i = 0; i < tests; i++){
 		testhandler(*gettest(LIBFT, i));

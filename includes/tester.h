@@ -19,6 +19,15 @@ typedef enum {
 	GNL
 } tester;
 
+typedef enum {
+	PASS,
+	FAIL,
+	SEGV,
+	ABRT,
+	TIME,
+	BUS
+}	grade;
+
 typedef struct {
 	Run run;
 	Exists exists;
@@ -30,6 +39,8 @@ typedef struct {
 //universal test funcs
 int testcount(tester t);
 testfunc *gettest(tester t, int n);
+void	setgrade(grade g);
+void	printgrade();
 
 //libft test funcs
 int		tests_isalpha();
@@ -38,6 +49,13 @@ void	test_isalpha(int n);
 int		tests_isdigit();
 bool	exists_isdigit();
 void	test_isdigit(int n);
+int     tests_isalnum();
+bool    exists_isalnum();
+void    test_isalnum(int n);
+int     tests_isascii();
+bool    exists_isascii();
+void    test_isascii(int n);
+
 
 //Write Chk Funcs
 bool	checkoutput(char *compare, int len);
