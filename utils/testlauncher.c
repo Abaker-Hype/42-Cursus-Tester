@@ -49,9 +49,14 @@ static void	testhandler(testfunc test)
 				alarm(0);
 				printgrade();
 				exit(EXIT_SUCCESS);
-			} else 
-			waitpid(tester, NULL, 0);
+			} else {
+				starttimer();
+				waitpid(tester, NULL, 0);
+				stoptimer();
+			}
 		}
+		printf("\e[96m%*c\e[37m", 14-tests, '-');
+		printtime(tests);
 	} else
 		printf("\e[41mNTI\e[37m");
 	printf("\n");
@@ -64,7 +69,7 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	printf("Run tests for %s\n", argv[1]);
-	printf("\e[96m---FUNCTION---    ---TEST---\e[37m\n");
+	printf("\e[96m---FUNCTION---    ---TEST---     --AVGTIME--\e[37m\n");
 	int tests = testcount(LIBFT);
 	for (int i = 0; i < tests; i++){
 		testhandler(*gettest(LIBFT, i));

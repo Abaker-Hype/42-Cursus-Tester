@@ -27,9 +27,7 @@ void	test_isprint(int n)
 {
 	for (int start = isprint_tests[n].start; start <= isprint_tests[n].end; start++){
 		int result = ft_isprint(start);
-		if (result != isprint_tests[n].expected){
-			setgrade(FAIL);
-			return;
+		if (result != isprint_tests[n].expected) return;
 	}
 	setgrade(PASS);
 }
