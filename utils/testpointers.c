@@ -13,7 +13,15 @@ testfunc libft[] = {
 	{&test_toupper, &exists_toupper, &tests_toupper, "ft_toupper", false},
 	{&test_tolower, &exists_tolower, &tests_tolower, "ft_tolower", false},
 	{&test_bzero, &exists_bzero, &tests_bzero, "ft_bzero", false},
-	{&test_memset, &exists_memset, &tests_memset, "ft_memset", false}
+	{&test_memset, &exists_memset, &tests_memset, "ft_memset", false},
+	{&test_memchr, &exists_memchr, &tests_memchr, "ft_memchr", false},
+	{&test_memcmp, &exists_memcmp, &tests_memcmp, "ft_memcmp", false},
+	{&test_memcpy, &exists_memcpy, &tests_memcpy, "ft_memcpy", false},
+	{&test_memmove, &exists_memmove, &tests_memmove, "ft_memmove", false},
+	{&test_strlcpy, &exists_strlcpy, &tests_strlcpy, "ft_strlcpy", false},
+	{&test_strlcat, &exists_strlcat, &tests_strlcat, "ft_strlcat", false},
+	{&test_strnstr, &exists_strnstr, &tests_strnstr, "ft_strnstr", false},
+	{&test_atoi, &exists_atoi, &tests_atoi, "ft_atoi", false}
 };
 
 int testcount(tester t)
@@ -21,6 +29,22 @@ int testcount(tester t)
 	switch (t){
 		case LIBFT: return arraysize(libft);
 		default: return -1;
+	}
+}
+
+static int gettestnum(testfunc lib[], int tests)
+{
+	int max = 0;
+	for (int i = 0; i < tests; i++)
+		if ((*lib[i].tests)() > max) max = (*lib[i].tests)();
+	return max;
+}
+
+int getmaxtests(tester t)
+{
+	switch (t){
+		case LIBFT: return gettestnum(libft, testcount(t));
+		default: return 0;
 	}
 }
 

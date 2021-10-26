@@ -33,7 +33,7 @@ static void setsignals()
 	signal(SIGABRT, sighandler);
 }
 
-static void	testhandler(testfunc test)
+static void	testhandler(testfunc test, int maxtests)
 {
 	int tests = (*test.tests)();
 	printf("%-16s\e[96m-\e[37m ", test.name);
@@ -55,10 +55,10 @@ static void	testhandler(testfunc test)
 				stoptimer();
 			}
 		}
-		printf("\e[96m%*c\e[37m", 14-tests, '-');
+		printf("\e[96m%*c\e[37m", maxtests+2-tests, '-');
 		printtime(tests);
 	} else
-		printf("\e[41mNTI\e[37m");
+		printf("\e[41mNTI\e[49m");
 	printf("\n");
 }
 
@@ -69,9 +69,10 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	printf("Run tests for %s\n", argv[1]);
-	printf("\e[96m---FUNCTION---    ---TEST---     --AVGTIME--\e[37m\n");
+	printf("\e[96m---FUNCTION---     ----TEST----      --AVGTIME--\e[37m\n");
 	int tests = testcount(LIBFT);
+	int maxtests = getmaxtests(LIBFT);
 	for (int i = 0; i < tests; i++){
-		testhandler(*gettest(LIBFT, i));
+		testhandler(*gettest(LIBFT, i), maxtests);
 	}
 }
