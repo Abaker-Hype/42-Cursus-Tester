@@ -1,20 +1,28 @@
 #ifndef TESTER_H
 # define TESTER_H
 
+//All the system includes (Most for comparing libft funcs)
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
 # include <sys/time.h>
-# include "dummyheaders.h"
+# include <ctype.h>
 
+//Special headers for weak fuctions
+# include "dummyheaders.h"
+# include "testfuncs.h"
+
+//Macros
 # define arraysize(X) sizeof(X)/sizeof(X[0])
 
+//Function pointer types
 typedef void (*Run)(int a);
 typedef bool (*Exists)();
 typedef int (*Tests)();
 
+//Enums
 typedef enum {
 	LIBFT,
 	PRINTF,
@@ -30,6 +38,7 @@ typedef enum {
 	BUS
 }	grade;
 
+//Structs
 typedef struct {
 	Run run;
 	Exists exists;
@@ -38,55 +47,17 @@ typedef struct {
 	bool	bonus;
 } testfunc;
 
-//universal test funcs
+//Universal Funcs
 int testcount(tester t);
+int getmaxtests(tester t);
 testfunc *gettest(tester t, int n);
 void	setgrade(grade g);
 void	printgrade();
+
+//Timer Funcs
 void	starttimer();
 void	stoptimer();
 void	printtime(int tests);
-
-//libft test funcs
-int		tests_isalpha();
-bool	exists_isalpha();
-void	test_isalpha(int n);
-int		tests_isdigit();
-bool	exists_isdigit();
-void	test_isdigit(int n);
-int     tests_isalnum();
-bool    exists_isalnum();
-void    test_isalnum(int n);
-int     tests_isascii();
-bool    exists_isascii();
-void    test_isascii(int n);
-int     tests_isprint();
-bool    exists_isprint();
-void    test_isprint(int n);
-int     tests_strchr();
-bool    exists_strchr();
-void    test_strchr(int n);
-int     tests_strncmp();
-bool    exists_strncmp();
-void    test_strncmp(int n);
-int     tests_strrchr();
-bool    exists_strrchr();
-void    test_strrchr(int n);
-int     tests_strlen();
-bool    exists_strlen();
-void    test_strlen(int n);
-int     tests_tolower();
-bool    exists_tolower();
-void    test_tolower(int n);
-int     tests_toupper();
-bool    exists_toupper();
-void    test_toupper(int n);
-int     tests_bzero();
-bool    exists_bzero();
-void    test_bzero(int n);
-int     tests_memset();
-bool    exists_memset();
-void    test_memset(int n);
 
 //Write Chk Funcs
 bool	checkoutput(char *compare, int len);

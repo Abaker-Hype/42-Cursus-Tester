@@ -1,6 +1,4 @@
-#include "libft.h"
 #include "tester.h"
-#include <strings.h>
 
 typedef struct s_case{
 	char *str;

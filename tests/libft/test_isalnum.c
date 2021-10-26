@@ -1,4 +1,3 @@
-#include "libft.h"
 #include "tester.h"
 
 typedef struct s_case{

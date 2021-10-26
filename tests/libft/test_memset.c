@@ -1,4 +1,3 @@
-#include "libft.h"
 #include "tester.h"
 
 typedef struct s_case{
@@ -7,7 +6,9 @@ typedef struct s_case{
 } t_case;
 
 t_case memset_tests[] = {
-	{'b', 10}
+	{'b', 10},
+	{'b', 5},
+	{'b', 0}
 };
 
 int tests_memset()
