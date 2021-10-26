@@ -6,7 +6,6 @@ INCS = ./includes/
 TESTS = ./tests/
 UTILS = ./utils/
 USRFLS = ./userfiles/
-USRHDRS = ./userheaders/
 
 #Strings
 TESTERS = libft printf gnl
@@ -15,8 +14,7 @@ INFO = Welcome to this pile of trash
 
 #compile
 CC = gcc
-FLAGS = -I$(INCS) -I$(USRHDRS) -L$(USRFLS) -lft -undefined dynamic_lookup
-TESTC = `find ./tests/ -type f -name '*.c'`
+FLAGS = -I$(INCS) -L$(USRFLS) -lft -undefined dynamic_lookup
 RUN = tester
 
 
@@ -30,11 +28,11 @@ ifeq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
 	@echo -n Making User Files...
 	@make -s -C $(USRFLS)
 	@echo Done
-	@$(CC) $(UTILS)* $(TESTC) $(FLAGS) -o $(RUN)
+	@$(CC) $(UTILS)* tests/$(TESTING)/* $(FLAGS) -o $(RUN)
 	@clear
 	@echo Beginning Tests
 	@./$(RUN) $(MAKECMDGOALS)
-	@rm -rf $(RUN) $(USRFLS) $(USRHDRS)
+	@rm -rf $(RUN) $(USRFLS)
 else
 	@echo $(IVDTEST)
 endif

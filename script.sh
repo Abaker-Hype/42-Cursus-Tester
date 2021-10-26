@@ -7,7 +7,6 @@ GNL=../getnextline/
 
 #Dont touch anything under this (Unless you know what your are doing and are adding in a new project to test)
 USRFLS=./userfiles/
-USRHDRS=./userheaders/
 
 #Strings
 PATHERROR="Error Missing/Incorrect Path in script.sh"
@@ -35,7 +34,7 @@ case $1 in
 		exit 1;
 esac
 echo -n "Removing old files..."
-rm -rf ${USRFLS} ${USRHDRS}
+rm -rf ${USRFLS}
 echo "Done"
 echo -n "Copying User Files..."
 case $1 in
@@ -50,13 +49,11 @@ case $1 in
 esac
 echo "Done"
 echo -n "Inserting Macros to User Headers..."
-mkdir ${USRHDRS}
 HEADERS=$(find ${USRFLS} -type f -name '*.h')
 if [[ -n "$HEADERS" ]]; then
 	for x in ${HEADERS}
 	do
 		echo "#include \"macros.h\"" >> $x
-		`cp -a $x ${USRHDRS}`
 		DIR=`dirname $x`
 		`cp -a ./includes/macros.h ${DIR}`
 	done
