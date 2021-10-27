@@ -9,9 +9,27 @@ UTILS = ./utils/
 USRFLS = ./userfiles/
 
 #Strings
-TESTERS = libft printf gnl
-IVDTEST = Invalid Tester
-INFO = Welcome to this pile of trash
+TESTERS = libft
+IVDTEST = Invalid or Not Coded (yet) Tester
+define INFO =
+Welcome to this pile of trash
+
+Usages: make [tester] [opt:func name] [opt:testnum]
+
+Available Testers:
+  libft(Slightly made)
+  printf(SoonTM)
+  gnl(SoonTM)
+  Whatever I decide to SUFFER on to add!
+
+Make sure this folder is outside the project you are wanting to Test!
+To update project paths for testing please edit the script.sh file (The Path variables are at the top)
+
+Note this is in its pretty early stages. Not every feature is added yet!
+If you have any ideas/bugs/errors please let me know.
+Discord = HypeSwarm#7837
+endef
+export INFO
 
 #compile
 CC = gcc
@@ -28,7 +46,7 @@ endif
 
 #Targets
 all:
-	@echo $(INFO)
+	@echo "$$INFO"
 
 $(TESTING):
 ifeq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
