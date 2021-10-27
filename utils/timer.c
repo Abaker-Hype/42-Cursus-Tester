@@ -17,9 +17,12 @@ void	stoptimer()
 	microsec += (long)(((seconds * 1000000) + end.tv_usec) - start.tv_usec);
 }
 
-void	printtime(int tests)
+void	printtime(int tests, bool detail)
 {
-	if(tests == 0) tests = 1;
+	if (tests == 0)
+		tests = 1;
+	if (detail)
+		printf("    Total test time = ");
 	printf("\e[93m %.4fms\e[37m", (double)(microsec/tests)/1000);
 	microsec = 0;
 }

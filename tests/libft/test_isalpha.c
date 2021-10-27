@@ -26,7 +26,7 @@ bool	exists_isalpha()
 	return (ft_isalpha != NULL);
 }
 
-void	test_isalpha(int n)
+void	test_isalpha(int n, bool detail)
 {
 	for (int start = isalpha_test[n].start; start <= isalpha_test[n].end; start++){
 		int resault = ft_isalpha(start);

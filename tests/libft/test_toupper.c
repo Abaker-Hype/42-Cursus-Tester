@@ -21,7 +21,7 @@ bool exists_toupper()
 	return (ft_toupper != NULL);
 }
 
-void	test_toupper(int n)
+void	test_toupper(int n, bool detail)
 {
 	for (int start = toupper_tests[n].start; start <= toupper_tests[n].end; start++){
 		int result = ft_toupper(start);

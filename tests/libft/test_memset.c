@@ -21,7 +21,7 @@ bool exists_memset()
 	return (ft_memset != NULL);
 }
 
-void	test_memset(int n)
+void	test_memset(int n, bool detail)
 {
 	bool pass = true;
 	void *s1 = malloc(sizeof(char) * 15);

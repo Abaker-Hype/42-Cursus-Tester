@@ -28,7 +28,7 @@ bool exists_strnstr()
 	return (ft_strnstr != NULL);
 }
 
-void	test_strnstr(int n)
+void	test_strnstr(int n, bool detail)
 {
 	t_case test = strnstr_tests[n];
 	char *search = "Never Gonna To Give You Up! Never Gonna Let You Down! ";

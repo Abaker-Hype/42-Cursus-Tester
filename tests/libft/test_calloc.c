@@ -20,7 +20,7 @@ bool exists_calloc()
 	return (ft_calloc != NULL);
 }
 
-void	test_calloc(int n)
+void	test_calloc(int n, bool detail)
 {
 	bool pass = true;
 	void *result = ft_calloc(calloc_tests[n].count, sizeof(char));

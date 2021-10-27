@@ -23,7 +23,7 @@ bool exists_strchr()
 	return (ft_strchr != NULL);
 }
 
-void	test_strchr(int n)
+void	test_strchr(int n, bool detail)
 {
 	t_case test = strchr_tests[n];
 	char *result = ft_strchr(test.str, test.c);

@@ -21,7 +21,7 @@ bool exists_memcpy()
 	return (ft_memcpy != NULL);
 }
 
-void	test_memcpy(int n)
+void	test_memcpy(int n, bool detail)
 {
 	bool pass = true;
 	t_case test = memcpy_tests[n];

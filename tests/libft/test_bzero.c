@@ -20,7 +20,7 @@ bool exists_bzero()
 	return (ft_bzero != NULL);
 }
 
-void	test_bzero(int n)
+void	test_bzero(int n, bool detail)
 {
 	bool pass = true;
 	char *mem = malloc(sizeof(char) * 10);

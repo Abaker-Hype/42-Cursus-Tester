@@ -22,7 +22,7 @@
 # define arraysize(X) sizeof(X)/sizeof(X[0])
 
 //Function pointer types
-typedef void (*Run)(int a);
+typedef void (*Run)(int i, bool b);
 typedef bool (*Exists)();
 typedef int (*Tests)();
 
@@ -57,21 +57,22 @@ typedef struct {
 	int testcount;
 	int maxtests;
 	int test;
+	bool detailed;
 }	t_args;
 
 //Universal Funcs
-void	testhandler(testfunc test, int maxtests, int testnum);
+void	testhandler(testfunc test, int maxtests, int testnum, bool detailed);
 int testcount(tester t);
 int getmaxtests(tester t);
 testfunc *gettest(tester t, int n);
 testfunc *gettestbyname(tester t, char *str);
 void	setgrade(grade g);
-void	printgrade();
+void	printgrade(bool detail);
 
 //Timer Funcs
 void	starttimer();
 void	stoptimer();
-void	printtime(int tests);
+void	printtime(int tests, bool detail);
 
 //Write Chk Funcs
 bool	checkoutput(char *compare, int len);

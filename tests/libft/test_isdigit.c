@@ -22,7 +22,7 @@ bool	exists_isdigit()
 	return (ft_isdigit != NULL);
 }
 
-void	test_isdigit(int n)
+void	test_isdigit(int n, bool detail)
 {
 	for (int start = isdigit_tests[n].start; start <= isdigit_tests[n].end; start++){
 		int resault = ft_isdigit(start);

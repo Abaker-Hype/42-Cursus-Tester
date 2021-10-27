@@ -22,7 +22,7 @@ bool exists_isascii()
 	return (ft_isascii != NULL);
 }
 
-void	test_isascii(int n)
+void	test_isascii(int n, bool detail)
 {
 	for(int start = isascii_tests[n].start; start <= isascii_tests[n].end; start++){
 		int result = ft_isascii(start);

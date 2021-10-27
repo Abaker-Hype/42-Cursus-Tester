@@ -26,7 +26,7 @@ bool exists_isalnum()
 	return (ft_isalnum != NULL);
 }
 
-void	test_isalnum(int n)
+void	test_isalnum(int n, bool detail)
 {
 	for (int start = isalnum_tests[n].start; start <= isalnum_tests[n].end; start++){
 		int resault = ft_isalnum(start);

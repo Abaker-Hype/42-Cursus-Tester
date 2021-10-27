@@ -20,7 +20,7 @@ bool exists_strdup()
 	return (ft_strdup != NULL);
 }
 
-void	test_strdup(int n)
+void	test_strdup(int n, bool detail)
 {
 	bool pass = true;
 	t_case test = strdup_tests[n];

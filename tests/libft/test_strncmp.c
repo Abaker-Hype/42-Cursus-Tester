@@ -31,7 +31,7 @@ bool exists_strncmp()
 	return (ft_strncmp != NULL);
 }
 
-void	test_strncmp(int n)
+void	test_strncmp(int n, bool detail)
 {
 	t_case test = strncmp_tests[n];
 	int result = ft_strncmp(test.str1, test.str2, test.len);

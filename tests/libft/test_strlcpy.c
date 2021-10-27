@@ -23,7 +23,7 @@ bool exists_strlcpy()
 	return (ft_strlcpy != NULL);
 }
 
-void	test_strlcpy(int n)
+void	test_strlcpy(int n, bool detail)
 {
 	bool pass = true;
 	t_case test = strlcpy_tests[n];

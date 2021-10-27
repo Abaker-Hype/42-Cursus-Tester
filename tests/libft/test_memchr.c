@@ -25,7 +25,7 @@ bool exists_memchr()
 	return (ft_memchr != NULL);
 }
 
-void	test_memchr(int n)
+void	test_memchr(int n, bool detail)
 {
 	t_case test = memchr_tests[n];
 	char *result, *expected;

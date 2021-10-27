@@ -27,7 +27,7 @@ bool exists_strlcat()
 	return (ft_strlcat != NULL);
 }
 
-void	test_strlcat(int n)
+void	test_strlcat(int n, bool detail)
 {
 	bool pass = true;
 	t_case test = strlcat_tests[n];

@@ -29,7 +29,7 @@ bool exists_memmove()
 	return (ft_memmove != NULL);
 }
 
-void	test_memmove(int n)
+void	test_memmove(int n, bool detail)
 {
 	char *result, *expected;
 	t_case test = memmove_tests[n];

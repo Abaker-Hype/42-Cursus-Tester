@@ -21,7 +21,7 @@ bool exists_tolower()
 	return (ft_tolower != NULL);
 }
 
-void	test_tolower(int n)
+void	test_tolower(int n, bool detail)
 {
 	for (int start = tolower_tests[n].start; start <= tolower_tests[n].end; start++){
 		int result = ft_tolower(start);

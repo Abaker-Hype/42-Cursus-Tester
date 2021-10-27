@@ -22,7 +22,7 @@ bool exists_isprint()
 	return (ft_isprint != NULL);
 }
 
-void	test_isprint(int n)
+void	test_isprint(int n, bool detail)
 {
 	for (int start = isprint_tests[n].start; start <= isprint_tests[n].end; start++){
 		int result = ft_isprint(start);

@@ -27,7 +27,7 @@ bool exists_memcmp()
 	return (ft_memcmp != NULL);
 }
 
-void	test_memcmp(int n)
+void	test_memcmp(int n, bool detail)
 {
 	t_case test = memcmp_tests[n];
 	int result = ft_memcmp(test.s1, test.s2, test.len);

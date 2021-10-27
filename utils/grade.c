@@ -7,8 +7,10 @@ void setgrade(grade g)
 	resault = g;
 }
 
-void printgrade()
+void printgrade(bool detail)
 {
+	if (detail)
+		printf("Grade: ");
 	printf("\e[31m");
 	switch (resault){
 		case PASS:

@@ -34,7 +34,7 @@ bool exists_atoi()
 	return (ft_atoi != NULL);
 }
 
-void	test_atoi(int n)
+void	test_atoi(int n, bool detail)
 {
 	int result = ft_atoi(atoi_tests[n].str);
 	if (result != atoi_tests[n].expected)return;
