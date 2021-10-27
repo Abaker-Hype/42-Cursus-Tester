@@ -1,4 +1,6 @@
 #include "tester.h"
+#include <sys/time.h>
+
 
 struct timeval start, end;
 long	microsec = 0;

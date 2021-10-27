@@ -1,13 +1,12 @@
 #ifndef TESTER_H
 # define TESTER_H
 
-//All the system includes (Most for comparing libft funcs)
+//All the system includes (Mostly for comparing libft funcs)
 # include <stdbool.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
-# include <sys/time.h>
 # include <ctype.h>
 
 //Special headers for weak fuctions
@@ -52,10 +51,20 @@ typedef struct {
 	bool	bonus;
 } testfunc;
 
+typedef struct {
+	tester testing;
+	testfunc *func;
+	int testcount;
+	int maxtests;
+	int test;
+}	t_args;
+
 //Universal Funcs
+void	testhandler(testfunc test, int maxtests, int testnum);
 int testcount(tester t);
 int getmaxtests(tester t);
 testfunc *gettest(tester t, int n);
+testfunc *gettestbyname(tester t, char *str);
 void	setgrade(grade g);
 void	printgrade();
 

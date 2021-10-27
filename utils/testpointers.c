@@ -28,7 +28,7 @@ int testcount(tester t)
 {
 	switch (t){
 		case LIBFT: return arraysize(libft);
-		default: return -1;
+		default: return 0;
 	}
 }
 
@@ -54,4 +54,18 @@ testfunc *gettest(tester t, int n)
 		case LIBFT: return &libft[n];
 		default: return NULL;
 	}
+}
+
+testfunc *gettestbyname(tester t, char *str)
+{
+	testfunc *arry;
+	switch (t){
+        case LIBFT: arry = libft;
+			break;
+        default: return NULL;
+    }
+	int max = testcount(t);
+	for (int i = 0; i < max; i++)
+		if (strcmp(str, arry[i].name) == 0) return &arry[i];
+	return NULL;
 }
