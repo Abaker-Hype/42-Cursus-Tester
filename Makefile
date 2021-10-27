@@ -8,9 +8,11 @@ TESTS = ./tests/
 UTILS = ./utils/
 USRFLS = ./userfiles/
 
-#Strings
+#Testers list
 TESTERS = libft
-IVDTEST = Invalid or Not Coded (yet) Tester
+
+#Strings
+IVDTEST = "Invalid or Not Coded (yet) Tester\n"
 define INFO =
 Welcome to this pile of trash
 
@@ -60,7 +62,7 @@ ifeq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
 	@./$(RUN) $(MAKECMDGOALS)
 	@rm -rf $(RUN) $(USRFLS)
 else
-	@echo $(IVDTEST)
+	@printf $(IVDTEST)
 endif
 
 %:
