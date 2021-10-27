@@ -36,13 +36,13 @@ export INFO
 #compile
 CC = gcc
 FLAGS = -I$(INCS)
-FLAGSM = -L$(USRFLS) -lft -undefined dynamic_lookup
-FLAGSL = -lbsd -Wl,--whole-archive -L$(USRFLS) -lft -Wl,--no-whole-archive -D LINUX
+MAC = -L$(USRFLS) -lft -undefined dynamic_lookup
+LINUX = -lbsd -Wl,--whole-archive -L$(USRFLS) -lft -Wl,--no-whole-archive -D LINUX
 RUN = tester
 ifeq ($(OS),Darwin;)
-	FLAGS += $(FLAGSM)
+	FLAGS += $(MAC)
 else ifeq ($(OS),Linux;)
-	FLAGS += $(FLAGSL)
+	FLAGS += $(LINUX)
 endif
 
 
