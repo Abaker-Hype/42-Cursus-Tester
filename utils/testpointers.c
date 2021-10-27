@@ -21,7 +21,9 @@ testfunc libft[] = {
 	{&test_strlcpy, &exists_strlcpy, &tests_strlcpy, "ft_strlcpy", false},
 	{&test_strlcat, &exists_strlcat, &tests_strlcat, "ft_strlcat", false},
 	{&test_strnstr, &exists_strnstr, &tests_strnstr, "ft_strnstr", false},
-	{&test_atoi, &exists_atoi, &tests_atoi, "ft_atoi", false}
+	{&test_atoi, &exists_atoi, &tests_atoi, "ft_atoi", false},
+	{&test_calloc, &exists_calloc, &tests_calloc, "ft_calloc", false},
+	{&test_strdup, &exists_strdup, &tests_strdup, "ft_strdup", false}
 };
 
 int testcount(tester t)

@@ -57,7 +57,8 @@ void	testhandler(testfunc test, int maxtests, int testnum)
 			}
 		}
 		printf("\e[96m%*c\e[37m", maxtests+2-tests, '-');
-		printtime(tests);
+		if (testnum != 0) tests = 0;
+		printtime(tests + 1);
 	} else
 		printf("\e[41mNTI\e[49m");
 	printf("\n");

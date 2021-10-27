@@ -23,6 +23,8 @@ int     tests_strlcpy() __attribute__((weak));
 int     tests_strlcat() __attribute__((weak));
 int     tests_strnstr() __attribute__((weak));
 int     tests_atoi() __attribute__((weak));
+int     tests_calloc() __attribute__((weak));
+int     tests_strdup() __attribute__((weak));
 //int     tests_() __attribute__((weak));
 
 //LIBFT exists
@@ -47,6 +49,8 @@ bool    exists_strlcpy() __attribute__((weak));
 bool    exists_strlcat() __attribute__((weak));
 bool    exists_strnstr() __attribute__((weak));
 bool    exists_atoi() __attribute__((weak));
+bool    exists_calloc() __attribute__((weak));
+bool    exists_strdup() __attribute__((weak));
 //bool    exists_() __attribute__((weak));
 
 //LIBFT test func
@@ -71,5 +75,7 @@ void    test_strlcpy(int n) __attribute__((weak));
 void    test_strlcat(int n) __attribute__((weak));
 void    test_strnstr(int n) __attribute__((weak));
 void    test_atoi(int n) __attribute__((weak));
+void    test_calloc(int n) __attribute__((weak));
+void    test_strdup(int n) __attribute__((weak));
 //void    test_(int n) __attribute__((weak));
 #endif
