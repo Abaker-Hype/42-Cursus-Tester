@@ -14,6 +14,11 @@
 # include "dummyheaders.h"
 # include "testfuncs.h"
 
+//Linux header
+# ifdef LINUX
+#	include <bsd/string.h>
+# endif
+
 //Macros
 # define arraysize(X) sizeof(X)/sizeof(X[0])
 
