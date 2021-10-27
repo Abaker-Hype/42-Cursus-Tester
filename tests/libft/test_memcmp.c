@@ -32,6 +32,6 @@ void	test_memcmp(int n)
 	t_case test = memcmp_tests[n];
 	int result = ft_memcmp(test.s1, test.s2, test.len);
 	int expected = memcmp(test.s1, test.s2, test.len);
-	if (result != expected)return;
+	if ((result & 0x80) != (expected & 0x80))return;
 	setgrade(PASS);
 }
