@@ -56,7 +56,9 @@ ifeq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
 	@echo -n Making User Files...
 	@make -s -C $(USRFLS)
 	@echo Done
+	@echo -n Compiling Tester...
 	@$(CC) $(UTILS)* tests/$(TESTING)/* $(FLAGS) -o $(RUN)
+	@echo Done
 	@clear
 	@echo Beginning Tests
 	@./$(RUN) $(MAKECMDGOALS)

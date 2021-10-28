@@ -8,6 +8,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <ctype.h>
+#	include "text.h"
 
 //Special headers for weak fuctions
 # include "dummyheaders.h"
@@ -30,7 +31,8 @@ typedef int (*Tests)();
 typedef enum {
 	LIBFT,
 	PRINTF,
-	GNL
+	GNL,
+	NONE
 } tester;
 
 typedef enum {
@@ -61,12 +63,13 @@ typedef struct {
 }	t_args;
 
 //Universal Funcs
-void	testhandler(testfunc test, int maxtests, int testnum, bool detailed);
+void	testhandler(testfunc test, int start, int colwidth, bool detailed);
 int testcount(tester t);
 int getmaxtests(tester t);
 testfunc *gettest(tester t, int n);
 testfunc *gettestbyname(tester t, char *str);
 void	setgrade(grade g);
+void	passsegv();
 void	printgrade(bool detail);
 
 //Timer Funcs

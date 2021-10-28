@@ -19,10 +19,8 @@ void	stoptimer()
 
 void	printtime(int tests, bool detail)
 {
-	if (tests == 0)
-		tests = 1;
-	if (detail)
-		printf("    Total test time = ");
-	printf("\e[93m %.4fms\e[37m", (double)(microsec/tests)/1000);
+	if (tests == 0)tests = 1;
+	if (detail)cprintf("    Total test time =", WHITE, DEFAULT);
+	cprintf(" %.4fms", YELLOW, DEFAULT, (double)(microsec/tests)/1000);
 	microsec = 0;
 }

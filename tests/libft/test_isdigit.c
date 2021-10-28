@@ -3,13 +3,13 @@
 typedef struct s_case {
 	int start;
 	int end;
-	int expected;
+	char *input;
 } t_case;
 
 t_case isdigit_tests[] = {
-	{0, 47, 0},
-	{'0', '9', 1},
-	{58, 127, 0}
+	{-1, 47, "loop range int[-1 - 47]"},
+	{'0', '9', "loop range char['0' - '9']"},
+	{58, 128, "loop range int[58 - 128]"}
 };
 
 int	tests_isdigit()
@@ -24,9 +24,19 @@ bool	exists_isdigit()
 
 void	test_isdigit(int n, bool detail)
 {
-	for (int start = isdigit_tests[n].start; start <= isdigit_tests[n].end; start++){
-		int resault = ft_isdigit(start);
-		if (resault != isdigit_tests[n].expected)return;
+	bool pass = true;
+	t_case test = isdigit_tests[n];
+	int result, expected;
+	if (detail) cprintf(TESTINFO, LBLUE, DEFAULT, YELLOW, n + 1, LBLUE, RED, test.input); 
+	for (int start = test.start; start <= test.end; start++){
+		result = ft_isdigit(start);
+		expected = isdigit(start);
+		if (expected > 0) expected = 1;
+		if (result != expected){
+			pass = false;
+			break;
+		}
 	}
-	setgrade(PASS);
+	if (detail) cprintf(TESTINTRSLT, LBLUE, DEFAULT, YELLOW, result, LBLUE, YELLOW, expected);
+	if (pass)setgrade(PASS);
 }

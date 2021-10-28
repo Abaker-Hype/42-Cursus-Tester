@@ -3,13 +3,13 @@
 typedef struct s_case{
 	int start;
 	int end;
-	int expected;
+	char *input;
 } t_case;
 
 t_case isascii_tests[] = {
-	{-1, -1, 0},
-	{0, 127, 1},
-	{128, 128, 0}
+	{-1, -1, "loop range int[-1 - -1]"},
+	{0, 127, "loop range int[0 - 127]"},
+	{128, 128, "loop range int[128 - 128]"}
 };
 
 int tests_isascii()
@@ -24,9 +24,19 @@ bool exists_isascii()
 
 void	test_isascii(int n, bool detail)
 {
-	for(int start = isascii_tests[n].start; start <= isascii_tests[n].end; start++){
-		int result = ft_isascii(start);
-		if (result != isascii_tests[n].expected) return;
+	bool pass = true;
+	t_case test = isascii_tests[n];
+	int result, expected;
+	if (detail) cprintf(TESTINFO, LBLUE, DEFAULT, YELLOW, n + 1, LBLUE, RED, test.input);
+	for(int start = test.start; start <= test.end; start++){
+		result = ft_isascii(start);
+		expected = isascii(start);
+		if (expected > 0) expected = 1;
+		if (result != expected){
+			pass = false;
+			break;
+		}
 	}
-	setgrade(PASS);
+	if (detail) cprintf(TESTINTRSLT, LBLUE, DEFAULT, YELLOW, result, LBLUE, YELLOW, expected);
+	if (pass) setgrade(PASS);
 }

@@ -1,36 +1,48 @@
 #include "tester.h"
 
-grade resault = FAIL;
+char *SEGVPASS = "Your Function SEGV but this is fine as the func you are replicating also SEGVs\nMoulenette wont test this\n";
+
+grade result = FAIL;
+bool	segvpass = false;
 
 void setgrade(grade g)
 {
-	resault = g;
+	result = g;
+}
+
+void	passsegv()
+{
+	segvpass = true;
 }
 
 void printgrade(bool detail)
 {
-	if (detail)
-		printf("Grade: ");
-	printf("\e[31m");
-	switch (resault){
-		case PASS:
-			printf("\e[32mP");
-			 break;
-		case SEGV:
-			 printf("S");
-			 break;
-		case ABRT:
-			 printf("A");
-			 break;
-		case TIME:
-			 printf("T");
-		default:
-			 printf("F");
+	char grade = 'F';
+	colour c = RED;
+	if (detail){
+		if (segvpass && result == SEGV) cprintf(SEGVPASS, YELLOW, DEFAULT);
+		cprintf("Grade: ", LBLUE, DEFAULT);
 	}
+	switch (result){
+		case PASS:
+			grade = 'P';
+			c = GREEN;
+			break;
+		case SEGV:
+			grade = 'S';
+			c = GREEN;
+			break;
+		case ABRT:
+			c = 'A';
+			break;
+		case TIME:
+			c = 'T';
+			break;
+		default:;
+	}
+	cprintf("%c", c, DEFAULT, grade);
 	if(hasleaks()){
-		printf("\e[31m");
-		printf("(L)");
+		cprintf("(L)", RED, DEFAULT);
 		freeleaks();
 	}
-	printf("\e[37m");
 }

@@ -1,57 +1,70 @@
 #include "tester.h"
 
-static t_args	parseargs(int argc, char **argv)
+//Strings
+char	*WARNFUNC = "Warning tests for: %s not found (Prob incorrect spelling)\n--Running all tests for %s instead--\n";
+char	*WARNNUM = "Warning: %s is an invalid test number for %s\n--Running all tests for %s instead--\n";
+char	*ERRTESTER = "ERROR: %s isn't a valid tester\n";
+char	*ERRARGC = "ERROR: only between 1-3 args are accepted\nYou supplied %i\n";
+char	*RUNTEST = "Running test/s for %s\n";
+char	*COLHEADERS = "---FUNCTION---     ----TEST----      --AVGTIME--\n";
+
+static t_args defaultargs()
 {
 	t_args args;
-	if (strcmp(argv[1], "libft") == 0)
-		args.testing = LIBFT;
-	else if (strcmp(argv[1], "printf") == 0)
-		args.testing = PRINTF;
-	else if (strcmp(argv[1], "gnl") == 0)
-		args.testing = GNL;
+	args.func = NULL;
+	args.testcount = 1;
+	args.maxtests = 0;
+	args.test = -1;
+	args.detailed = false;
+	return (args);
+}
+
+static tester parsetester(char *arg)
+{
+	if (strcmp(arg, "libft") == 0) return (LIBFT);
+	if (strcmp(arg, "printf") == 0) return (PRINTF);
+	if (strcmp(arg, "GNL") == 0) return (GNL);
+	cprintf(ERRTESTER, RED, DEFAULT, arg);
+	exit(0);
+}
+
+static t_args	parseargs(int argc, char **argv)
+{
+	if (argc == 1 || argc > 4){
+		cprintf(ERRARGC, RED, DEFAULT, argc - 1);
+		exit(0);
+	}
+	t_args args = defaultargs();
+	args.testing = parsetester(argv[1]);
 	args.maxtests = getmaxtests(args.testing);
 	if (argc > 2){
 		args.func = gettestbyname(args.testing, argv[2]);
-		if (!args.func)
-			printf("\e[93mWarning tests for: %s not found (Prob incorrect spelling)\n--Running all tests for %s instead--\e[37m\n",argv[2], argv[1]);
-	} else 
-		args.func = NULL;
+		if (!args.func) cprintf(WARNFUNC, YELLOW, DEFAULT, argv[2], argv[1]);
+	}
 	if (argc == 4 && args.func){
 		args.test = atoi(argv[3]);
 		args.detailed = true;
 		if (args.test > (*args.func->tests)() || args.test <= 0){
-			printf("\e[93mWarning: %s is an invalid test number for %s\n--Running all tests for %s instead--\e[37m\n", argv[3], argv[2], argv[2]); 
+			cprintf(WARNNUM, YELLOW, DEFAULT, argv[3], argv[2], argv[2]); 
 			args.test = 0;
 			args.detailed = false;
 		}
-	} else {
-		args.test = 0;
-		args.detailed = false;
+		args.test--;
 	}
-	if (!args.func)
-		args.testcount = testcount(args.testing);
-	else
-		args.testcount = 1;
+	if (!args.func) args.testcount = testcount(args.testing);
 	return args;
 }
 
 int main(int argc, char **argv)
 {
-	if (argc == 1 || argc > 4){
-		printf("Invalid Args Count\n");
-		return (0);
-	}
 	t_args args = parseargs(argc, argv);
-	if (args.func)
-		printf("Running test/s for %s\n",args.func->name);
-	else
-    printf("Running tests for %s\n", argv[1]);
-  if (!args.detailed)
-		printf("\e[96m---FUNCTION---     ----TEST----      --AVGTIME--\e[37m\n");
+	if (args.func) cprintf(RUNTEST, LBLUE, DEFAULT, args.func->name);
+	else cprintf(RUNTEST,PINK, DEFAULT, argv[1]);
+  if (!args.detailed) cprintf(COLHEADERS, LBLUE, DEFAULT);
 	for (int i = 0; i < args.testcount; i++){
 		if (args.func)
-			testhandler(*args.func, args.maxtests, args.test, args.detailed);
+			testhandler(*args.func, args.test, args.maxtests, args.detailed);
 		else
-			testhandler(*gettest(LIBFT, i), args.maxtests, 0, false);
+			testhandler(*gettest(LIBFT, i), args.test, args.maxtests, args.detailed);
 	}
 }

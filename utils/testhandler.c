@@ -35,40 +35,42 @@ static void setsignals()
 	signal(SIGABRT, sighandler);
 }
 
-void	testhandler(testfunc test, int maxtests, int testnum, bool detailed)
+static void runfunctest(testfunc test,int start, int total)
 {
-	int tests = testnum;
-	detail = detailed;
-	if (tests == 0)
-		tests = (*test.tests)();
-	if (!detailed)
-		printf("%-16s\e[96m-\e[37m ", test.name);
-	if ((*test.exists)()) {
-		for (int i = 0; i < tests; i++) {
-			if (testnum != 0)
-				i += testnum - 1;
-			fflush(stdout);
-			pid_t tester = fork();
-			if (tester == 0){
-				setsignals();
-				if (hasleaks()) freeleaks();
-				alarm(2);
-				(*test.run)(i, detailed);
-				alarm(0);
-				printgrade(detailed);
-				exit(EXIT_SUCCESS);
-			} else {
-				starttimer();
-				waitpid(tester, NULL, 0);
-				stoptimer();
-			}
+	pid_t tester;
+	for (int i = 0; i < total; i++){
+		fflush(stdout);
+		if ((tester = fork()) == 0){
+			setsignals();
+			alarm(2);
+			(*test.run)(start + i, detail);
+			alarm(0);
+			printgrade(detail);
+			exit(EXIT_SUCCESS);
+		} else {
+			starttimer();
+			waitpid(tester, NULL, 0);
+			stoptimer();
 		}
+	}
+}
+
+void	testhandler(testfunc test, int start, int colwidth, bool detailed)
+{
+	int total = 1;
+	detail = detailed;
+	if (start == -1){
+		total = (*test.tests)();
+		start = 0;
+	}
+	if (!detailed)
+		cprintf("%-16s \e[%im- ", WHITE, DEFAULT, test.name, LBLUE);
+	if ((*test.exists)()) {
+		runfunctest(test, start, total);
 		if (!detailed)
-			printf("\e[96m%*c\e[37m", maxtests+2-tests, '-');
-		if (testnum != 0)
-			tests = 0;
-		printtime(tests + 1, detailed);
+			cprintf("%*c",LBLUE, DEFAULT, colwidth+2-total, '-');
+		printtime(total, detailed);
 	} else
-		printf("\e[41mNTI\e[49m");
+		cprintf("NTI", WHITE, RED);
 	printf("\n");
 }

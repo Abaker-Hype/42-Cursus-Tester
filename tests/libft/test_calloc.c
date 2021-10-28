@@ -3,11 +3,13 @@
 
 typedef struct s_case{
 	int count;
+	int size;
+	char *input;
 } t_case;
 
 t_case calloc_tests[] = {
-	{20},
-	{0}
+	{20, sizeof(char), "int[20] int[sizeof(char)]"},
+	{0,sizeof(char), "int[0] int[sizeof(char)]"}
 };
 
 int tests_calloc()
@@ -23,10 +25,12 @@ bool exists_calloc()
 void	test_calloc(int n, bool detail)
 {
 	bool pass = true;
-	void *result = ft_calloc(calloc_tests[n].count, sizeof(char));
-	void *expected = calloc(calloc_tests[n].count, sizeof(char));
+	t_case test = calloc_tests[n];
+	if (detail) cprintf(TESTINFO, LBLUE, DEFAULT, YELLOW, n + 1, LBLUE, RED, test.input);
+	void *result = ft_calloc(test.count, test.size);
+	void *expected = calloc(test.count, test.size);
 	if (!result || memcmp(result, expected, calloc_tests[n].count) != 0)pass = false;
 	if (result) free(result);
-	free(expected);
+	if (expected) free(expected);
 	if (pass)setgrade(PASS);
 }
