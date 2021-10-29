@@ -3,17 +3,16 @@
 typedef struct s_case {
 	int start;
 	int end;
-	char *input;
 } t_case;
 
 t_case isalpha_tests[] = {
-	{-1, 47, "loop range int[0 - 47]"},
-	{'0', '9', "loop range char['0' - '9']"},
-	{58, 64, "loop range int[58 - 64]"},
-	{'A', 'Z', "loop range char['A' - 'Z']"},
-	{91, 96, "loop range int[91 - 96]"},
-	{'a', 'z', "loop range char['a' - 'z']"},
-	{123, 530, "loop range int[123 - 530]"}
+	{-1, 47},
+	{'0', '9'},
+	{58, 64},
+	{'A', 'Z'},
+	{91, 96},
+	{'a', 'z'},
+	{123, 530}
 };
 
 int	tests_isalpha()
@@ -31,7 +30,7 @@ void	test_isalpha(int n, bool detail)
 	bool pass = true;
 	t_case test = isalpha_tests[n];
 	int result, expected;
-	if (detail) cprintf(TESTINFO, LBLUE, DEFAULT, YELLOW, n + 1, LBLUE, RED, test.input);
+	if (detail) testinfo("*i*i", n + 1, "loop range", test.start, "to", test.end);
 	for (int start = test.start; start <= test.end; start++){
 		result = ft_isalpha(start);
 		expected = isalpha(start);
@@ -41,6 +40,6 @@ void	test_isalpha(int n, bool detail)
 			break;
 		}
 	}
-	if (detail) cprintf(TESTINTRSLT, LBLUE, DEFAULT, YELLOW, result, LBLUE, YELLOW, expected);
+	if (detail) resultinfo("i", result, expected);
 	if (pass)setgrade(PASS);
 }

@@ -8,7 +8,6 @@
 # include <stdio.h>
 # include <string.h>
 # include <ctype.h>
-#	include "text.h"
 
 //Special headers for weak fuctions
 # include "dummyheaders.h"
@@ -44,6 +43,18 @@ typedef enum {
 	BUS
 }	grade;
 
+typedef enum {
+	WHITE = 97,
+	BLACK = 30,
+	RED = 91,
+	YELLOW = 93,
+	GREEN = 92,
+	PINK = 95,
+	LBLUE = 96,
+	DBLUE = 94,
+	DEFAULT = 39
+} colour;
+
 //Structs
 typedef struct {
 	Run run;
@@ -62,15 +73,22 @@ typedef struct {
 	bool detailed;
 }	t_args;
 
-//Universal Funcs
+//Testing Funcs
 void	testhandler(testfunc test, int start, int colwidth, bool detailed);
 int testcount(tester t);
 int getmaxtests(tester t);
 testfunc *gettest(tester t, int n);
 testfunc *gettestbyname(tester t, char *str);
+
+//Grade Funcs
 void	setgrade(grade g);
 void	passsegv();
 void	printgrade(bool detail);
+
+//Text Funcs
+void    cprintf(char *str, colour txt, colour bkgrd,...);
+void	testinfo(char *format, int test,...);
+void	resultinfo(char *format,...);
 
 //Timer Funcs
 void	starttimer();
