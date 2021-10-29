@@ -48,7 +48,8 @@ void	testinfo(char *format, int test,...)
 				cvprintf("char", &c, 1);
 				break;
 			case 's': str = va_arg(args, char *);
-				cvprintf("str", str, strlen(str));
+				if (str) cvprintf("str", str, strlen(str));
+				else cvprintf("str", str, 0);
 				break;
 			case 'v': cvprintf("void", va_arg(args, void *), va_arg(args, int));
 				break;
@@ -79,7 +80,8 @@ void	resultinfo(char *format,...)
 					cvprintf("", &c, 1);
 					break;
 				case 's': str = va_arg(args, char *);
-					cvprintf("", str, strlen(str));
+					if (str)cvprintf("", str, strlen(str));
+					else cvprintf("", str, 0);
 					break;
 				case 'v': cvprintf("", va_arg(args, void *), va_arg(args, int));
 					break;

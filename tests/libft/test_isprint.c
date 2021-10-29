@@ -3,13 +3,12 @@
 typedef struct s_case{
 	int	start;
 	int end;
-	int expected;
 } t_case;
 
 t_case isprint_tests[] = {
-	{0, 31, 0},
-	{32, 126, 1},
-	{127, 127, 0}
+	{0, 31},
+	{32, 126},
+	{127, 127}
 };
 
 int tests_isprint()
@@ -24,9 +23,19 @@ bool exists_isprint()
 
 void	test_isprint(int n, bool detail)
 {
-	for (int start = isprint_tests[n].start; start <= isprint_tests[n].end; start++){
-		int result = ft_isprint(start);
-		if (result != isprint_tests[n].expected) return;
+	bool pass = true;
+	t_case test = isprint_tests[n];
+	int result, expected;
+	if (detail) testinfo("*i*i", n + 1, "loop range", test.start, "to", test.end);
+	for (int start = test.start; start <= test.end; start++){
+		result = ft_isprint(start);
+		expected = isprint(start);
+		if (expected > 0) expected = 1;
+		if (result != expected){
+			pass = false;
+			break;
+		}
 	}
-	setgrade(PASS);
+	if (detail) resultinfo("i", result, expected);
+	if (pass) setgrade(PASS);
 }

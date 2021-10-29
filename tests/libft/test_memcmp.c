@@ -29,9 +29,15 @@ bool exists_memcmp()
 
 void	test_memcmp(int n, bool detail)
 {
+	bool pass = true;
 	t_case test = memcmp_tests[n];
+	if (detail) testinfo("ssi", n + 1, test.s1, test.s2, test.len);
 	int result = ft_memcmp(test.s1, test.s2, test.len);
 	int expected = memcmp(test.s1, test.s2, test.len);
-	if ((result & 0x80) != (expected & 0x80))return;
-	setgrade(PASS);
+	if ((result & 0x80) != (expected & 0x80))pass = false;
+	if (detail){
+		resultinfo("i", result, expected);
+		cprintf("Note on Linux memcmp returns only -1, 0, or 1. So only base off the sign\n", YELLOW, DEFAULT);
+	}
+	if (pass) setgrade(PASS);
 }

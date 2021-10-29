@@ -30,7 +30,7 @@ void printgrade(bool detail)
 			break;
 		case SEGV:
 			grade = 'S';
-			c = GREEN;
+			if(segvpass) c = GREEN;
 			break;
 		case ABRT:
 			c = 'A';
