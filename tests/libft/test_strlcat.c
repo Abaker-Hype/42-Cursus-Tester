@@ -11,9 +11,8 @@ t_case strlcat_tests[] = {
 	{"", 20, 5},
 	{"test12345", 20, 15},
 	{"test12345", 0, 15},
-	{"test12345", 1, 15},
-	{"test12345", 5, 15},
-	{"test12345", 6, 15},
+	{"test12345", 20, 10},
+	{"test12345", 10, 10},
 	{"test12345", 20, 19}
 };
 
@@ -37,9 +36,11 @@ void	test_strlcat(int n, bool detail)
 	memset(dst2, '\0', 20);
 	memset(dst1, 'a', test.fill);
 	memset(dst2, 'a', test.fill);
+	if (detail) testinfo("vsi", n + 1, dst1, 20, test.str, test.len);
 	int result = ft_strlcat(dst1, test.str, test.len);
 	int expected = strlcat(dst2, test.str, test.len);
 	if (result != expected || memcmp(dst1, dst2, 20) != 0)pass = false;
+	if (detail) resultinfo("v", dst1, 20, dst2, 20);
 	free(dst1);
 	free(dst2);
 	if (pass)setgrade(PASS);

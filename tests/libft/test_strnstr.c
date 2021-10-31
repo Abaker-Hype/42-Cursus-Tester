@@ -30,10 +30,13 @@ bool exists_strnstr()
 
 void	test_strnstr(int n, bool detail)
 {
+	bool pass = true;
 	t_case test = strnstr_tests[n];
 	char *search = "Never Gonna To Give You Up! Never Gonna Let You Down! ";
+	if (detail) testinfo("ssi", n + 1, search, test.find, test.len);
 	char *result = ft_strnstr(search, test.find, test.len);
 	char *expected = strnstr(search, test.find, test.len);
-	if (result != expected) return;
-	setgrade(PASS);
+	if (result != expected) pass = false;
+	if (detail) resultinfo("s", result, expected);
+	if (pass)setgrade(PASS);
 }

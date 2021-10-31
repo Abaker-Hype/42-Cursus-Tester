@@ -3,10 +3,11 @@
 typedef struct s_case{
 	char *str;
 	char c;
+	bool segv;
 } t_case;
 
 t_case strchr_tests[] = {
-	{NULL, ' '},
+	{NULL, ' ', true},
 	{"NULL", '\0'},
 	{"abc", 'b'},
 	{"abbc", 'b'},
@@ -25,10 +26,14 @@ bool exists_strchr()
 
 void	test_strchr(int n, bool detail)
 {
+	bool pass = true;
 	t_case test = strchr_tests[n];
-	char *result = ft_strchr(test.str, test.c);
-	char *expected = NULL;
-	if (test.str) expected = strchr(test.str, test.c);
-	if (result != expected) return;
-	setgrade(PASS);
+	char *result, *expected = NULL; 
+	if (test.segv) passsegv();
+	if (detail) testinfo("sc", n + 1, test.str, test.c);
+	result = ft_strchr(test.str, test.c);
+	if (!test.segv)expected = strchr(test.str, test.c);
+	if (result != expected) pass = false;
+	if(detail) resultinfo("s", result, expected);
+	if (pass) setgrade(PASS);
 }

@@ -51,7 +51,8 @@ void	testinfo(char *format, int test,...)
 				if (str) cvprintf("str", str, strlen(str));
 				else cvprintf("str", str, 0);
 				break;
-			case 'v': cvprintf("void", va_arg(args, void *), va_arg(args, int));
+			case 'v': str = va_arg(args, char *);
+				cvprintf("void", str, va_arg(args, int));
 				break;
 			case '*': printf("%s ", va_arg(args, char *));
 				break;
@@ -70,7 +71,7 @@ void	resultinfo(char *format,...)
 	va_start(args, format);
 	for (int i = 0; i < 2; i++){
 		if (i == 0) cprintf("Your result: ", LBLUE, DEFAULT);
-		else cprintf("Expected: ", LBLUE, DEFAULT);
+		else cprintf("Expected:    ", LBLUE, DEFAULT);
 		printf("\e[%i;%im", YELLOW, DEFAULT + 10);
 		for (int j = 0; format[j] != '\0'; j++){
 			switch (format[j]){
@@ -83,10 +84,13 @@ void	resultinfo(char *format,...)
 					if (str)cvprintf("", str, strlen(str));
 					else cvprintf("", str, 0);
 					break;
-				case 'v': cvprintf("", va_arg(args, void *), va_arg(args, int));
+				case 'v': str = va_arg(args, char *);
+					cvprintf("", str, va_arg(args, int));
 					break;
 				case 'o': str = va_arg(args, char *);
 					cvprintf("printed", str, strlen(str));
+					break;
+				case '*': printf("%s", va_arg(args, char *));
 					break;
 				default:;
 			}

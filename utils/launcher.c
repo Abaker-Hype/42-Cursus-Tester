@@ -42,14 +42,17 @@ static t_args	parseargs(int argc, char **argv)
 		if (!args.func) cprintf(WARNFUNC, YELLOW, DEFAULT, argv[2], argv[1]);
 	}
 	if (argc == 4 && args.func){
-		args.test = atoi(argv[3]);
-		args.detailed = true;
-		if (args.test > (*args.func->tests)() || args.test <= 0){
-			cprintf(WARNNUM, YELLOW, DEFAULT, argv[3], argv[2], argv[2]); 
-			args.test = 0;
-			args.detailed = false;
+		if (strcmp(argv[3], "detail") == 0) args.detailed = true;
+		else {
+			args.test = atoi(argv[3]);
+			args.detailed = true;
+			if (args.test > (*args.func->tests)() || args.test <= 0){
+				cprintf(WARNNUM, YELLOW, DEFAULT, argv[3], argv[2], argv[2]); 
+				args.test = 0;
+				args.detailed = false;
+			}
+			args.test--;
 		}
-		args.test--;
 	}
 	if (!args.func) args.testcount = testcount(args.testing);
 	return args;
@@ -67,4 +70,5 @@ int main(int argc, char **argv)
 		else
 			testhandler(*gettest(LIBFT, i), args.test, args.maxtests, args.detailed);
 	}
+	gradeinfo();
 }

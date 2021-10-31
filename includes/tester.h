@@ -84,6 +84,7 @@ testfunc *gettestbyname(tester t, char *str);
 void	setgrade(grade g);
 void	passsegv();
 void	printgrade(bool detail);
+void	gradeinfo();
 
 //Text Funcs
 void    cprintf(char *str, colour txt, colour bkgrd,...);

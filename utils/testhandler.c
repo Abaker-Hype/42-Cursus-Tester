@@ -51,6 +51,13 @@ static void runfunctest(testfunc test,int start, int total)
 			starttimer();
 			waitpid(tester, NULL, 0);
 			stoptimer();
+			if (detail){
+				printtime(1, true);
+				printf("\n");
+				for (int j = 0; j < 50; j++)
+					cprintf("--", PINK, DEFAULT);
+				printf("\n");
+			}
 		}
 	}
 }
@@ -67,9 +74,10 @@ void	testhandler(testfunc test, int start, int colwidth, bool detailed)
 		cprintf("%-16s \e[%im- ", WHITE, DEFAULT, test.name, LBLUE);
 	if ((*test.exists)()) {
 		runfunctest(test, start, total);
-		if (!detailed)
+		if (!detailed){
 			cprintf("%*c",LBLUE, DEFAULT, colwidth+2-total, '-');
-		printtime(total, detailed);
+			printtime(total, detailed);
+		}
 	} else
 		cprintf("NTI", WHITE, RED);
 	printf("\n");

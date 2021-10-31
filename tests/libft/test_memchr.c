@@ -8,8 +8,8 @@ typedef struct s_case{
 } t_case;
 
 t_case memchr_tests[] = {
-	{"test", 4, 't', 4},
-	{"test", 4,'s', 4},
+	{"test", 4, 'a', 4},
+	{"testtest", 8,'s', 8},
 	{"test", 4,'s', 2},
 	{"test", 4,'a', 5},
 	{"abcde\0zyxw", 10, 'z', 10},
