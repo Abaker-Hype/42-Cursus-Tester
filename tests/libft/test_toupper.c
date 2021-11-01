@@ -23,10 +23,18 @@ bool exists_toupper()
 
 void	test_toupper(int n, bool detail)
 {
-	for (int start = toupper_tests[n].start; start <= toupper_tests[n].end; start++){
-		int result = ft_toupper(start);
-		int expected = toupper(start);
-		if (result != expected) return ;
+	bool pass = true;
+	t_case test = toupper_tests[n];
+	int result, expected;
+	if (detail) testinfo("*i*i", n + 1, "loop range", test.start, "to", test.end);
+	for (int start = test.start; start <= test.end; start++){
+		result = ft_toupper(start);
+		expected = toupper(start);
+		if (result != expected){
+			pass = false;
+		   	break ;
+		}
 	}
-	setgrade(PASS);
+	if (detail) resultinfo("i", result, expected);
+	if (pass) setgrade(PASS);
 }

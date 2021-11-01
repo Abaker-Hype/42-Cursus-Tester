@@ -23,10 +23,18 @@ bool exists_tolower()
 
 void	test_tolower(int n, bool detail)
 {
-	for (int start = tolower_tests[n].start; start <= tolower_tests[n].end; start++){
-		int result = ft_tolower(start);
-		int expected = tolower(start);
-		if (result != expected) return ;
+	bool pass = true;
+	t_case test = tolower_tests[n];
+	int result, expected;
+	if (detail) testinfo("*i*i", n + 1, "loop range", test.start, "to", test.end);
+	for (int start = test.start; start <= test.end; start++){
+		result = ft_tolower(start);
+		expected = tolower(start);
+		if (result != expected){
+			pass = false;
+			break;
+		}
 	}
-	setgrade(PASS);
+	if (detail) resultinfo("i", result, expected);
+	if (pass) setgrade(PASS);
 }
