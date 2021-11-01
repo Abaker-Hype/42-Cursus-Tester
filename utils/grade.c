@@ -21,13 +21,16 @@ void printgrade(bool detail)
 	colour c = RED;
 	if (detail){
 		if (segvpass && result == SEGV) cprintf(SEGVPASS, YELLOW, DEFAULT);
+		if (result == PASS && hasleaks()) listleaks();
 		cprintf("Grade: ", LBLUE, DEFAULT);
 	}
 	switch (result){
 		case PASS:
-			grade = 'P';
 			if (hasleaks()) grade = 'L';
-			c = GREEN;
+			else {	
+				grade = 'P';
+				c = GREEN;
+			}
 			break;
 		case SEGV:
 			grade = 'S';
@@ -39,8 +42,7 @@ void printgrade(bool detail)
 		case TIME:
 			c = 'T';
 			break;
-		default:
-			if (hasleaks()) grade = 'L';
+		default:;
 	}
 	cprintf("%c", c, DEFAULT, grade);
 	if (hasleaks()) freeleaks();
@@ -56,13 +58,11 @@ void	gradeinfo()
 	cprintf("S", RED, DEFAULT);
 	cprintf(" = SEGV  ",LBLUE, DEFAULT);
 	cprintf("S", GREEN, DEFAULT);
-	cprintf(" = SEGV(PASS) ",LBLUE, DEFAULT);
+	cprintf(" = SEGV(PASS)\n",LBLUE, DEFAULT);
 	cprintf("T", RED, DEFAULT);
-	cprintf(" = Timeout\n",LBLUE, DEFAULT);
+	cprintf(" = Timeout ",LBLUE, DEFAULT);
 	cprintf("A", RED, DEFAULT);
 	cprintf(" = Abort  ",LBLUE, DEFAULT);
 	cprintf("L", RED, DEFAULT);
-	cprintf(" = Leaks (Wrong Return)  ",LBLUE, DEFAULT);
-	cprintf("L", GREEN, DEFAULT);
-	cprintf(" = Leaks (Correct Return)\n",LBLUE, DEFAULT);
+	cprintf(" = Leaks\n",LBLUE, DEFAULT);
 }
