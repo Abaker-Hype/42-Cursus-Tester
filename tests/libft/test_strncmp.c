@@ -24,7 +24,8 @@ t_case strncmp_tests[] = {
 	{"abc", "", 3, 0, 0},
 	{"test\200", "test\0", 5, 5, 6},
 	{NULL, "abc", 0, 3, 3, true},
-	{"abc", NULL, 3, 0, 3, true}	
+	{"abc", NULL, 3, 0, 3, true},
+	{"⾐⭊ⱙ","⾐⭊≴", 9, 9, 9}	
 };
 
 int tests_strncmp()

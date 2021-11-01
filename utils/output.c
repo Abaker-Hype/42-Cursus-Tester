@@ -40,21 +40,15 @@ void	resetprinted()
 	printed = NULL;
 }
 
-void outputuser()
+char *useroutput()
 {
-	printf("[%s]\n",printed);
+	return (printed);
 }
 
 bool checkoutput(char *compare, int len)
 {
 	int	i = 0;
-	if (len != printlen)
+	if (len != printlen || memcmp(compare, printed, len) != 0)
 		return (false);
-	while (i < len)
-	{
-		if (compare[i] != printed[i])
-			return (false);
-		i++;
-	}
 	return (true);
 }

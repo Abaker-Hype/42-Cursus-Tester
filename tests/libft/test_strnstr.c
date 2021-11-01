@@ -3,6 +3,7 @@
 typedef struct s_case{
 	char *find;
 	int len;
+	bool segv;
 } t_case;
 
 t_case strnstr_tests[] = {
@@ -15,7 +16,10 @@ t_case strnstr_tests[] = {
 	{"tacos", 50},
 	{"Down", 20},
 	{"Give", 17},
-	{"Give", 0}
+	{"Give", 0},
+	{"", 0},
+	{NULL, 0, true},
+	{"", 5, true}
 };
 
 int tests_strnstr()
@@ -33,9 +37,14 @@ void	test_strnstr(int n, bool detail)
 	bool pass = true;
 	t_case test = strnstr_tests[n];
 	char *search = "Never Gonna To Give You Up! Never Gonna Let You Down! ";
+	char *result = NULL, *expected = NULL;
+	if (test.segv) {
+		passsegv();
+		if (test.len > 0) search = NULL;
+	}
 	if (detail) testinfo("ssi", n + 1, search, test.find, test.len);
-	char *result = ft_strnstr(search, test.find, test.len);
-	char *expected = strnstr(search, test.find, test.len);
+	result = ft_strnstr(search, test.find, test.len);
+	if (!test.segv) expected = strnstr(search, test.find, test.len);
 	if (result != expected) pass = false;
 	if (detail) resultinfo("s", result, expected);
 	if (pass)setgrade(PASS);

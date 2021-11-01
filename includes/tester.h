@@ -99,11 +99,12 @@ void	printtime(int tests, bool detail);
 //Write Chk Funcs
 bool	checkoutput(char *compare, int len);
 void	resetprinted();
-void	outputuser();
+char	*useroutput();
 
 //Leak Chk Funcs
 bool	hasleaks();
 void	freeleaks();
-void	listleaks(bool unique);
+void	listleaks();
+void	free_track(void *ptr);
 
 #endif

@@ -23,7 +23,11 @@ testfunc libft[] = {
 	{&test_strnstr, &exists_strnstr, &tests_strnstr, "ft_strnstr", false},
 	{&test_atoi, &exists_atoi, &tests_atoi, "ft_atoi", false},
 	{&test_calloc, &exists_calloc, &tests_calloc, "ft_calloc", false},
-	{&test_strdup, &exists_strdup, &tests_strdup, "ft_strdup", false}
+	{&test_strdup, &exists_strdup, &tests_strdup, "ft_strdup", false},
+	{&test_substr, &exists_substr, &tests_substr, "ft_substr", false},
+	{&test_strjoin, &exists_strjoin, &tests_strjoin, "ft_strjoin", false},
+	{&test_strtrim, &exists_strtrim, &tests_strtrim, "ft_strtrim", false},
+	{&test_split, &exists_split, &tests_split, "ft_split", false}
 };
 
 int testcount(tester t)

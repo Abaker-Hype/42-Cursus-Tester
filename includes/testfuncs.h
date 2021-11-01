@@ -1,6 +1,12 @@
 #ifndef TEST_FUNCS_H
 # define TEST_FUNCS_H
 
+//LIBFT compare funcs
+char *substr(char *str, int start, int len) __attribute__((weak));
+char *strjoin(char *s1, char *s2) __attribute__((weak));
+char *strtrim(char *str, char *set) __attribute__((weak));
+char **split(char *str, char c) __attribute__((weak));
+
 //LIBFT tests count
 int     tests_bzero() __attribute__((weak));
 int     tests_isalnum() __attribute__((weak));
@@ -25,6 +31,10 @@ int     tests_strnstr() __attribute__((weak));
 int     tests_atoi() __attribute__((weak));
 int     tests_calloc() __attribute__((weak));
 int     tests_strdup() __attribute__((weak));
+int     tests_substr() __attribute__((weak));
+int     tests_strjoin() __attribute__((weak));
+int     tests_strtrim() __attribute__((weak));
+int     tests_split() __attribute__((weak));
 //int     tests_() __attribute__((weak));
 
 //LIBFT exists
@@ -51,6 +61,10 @@ bool    exists_strnstr() __attribute__((weak));
 bool    exists_atoi() __attribute__((weak));
 bool    exists_calloc() __attribute__((weak));
 bool    exists_strdup() __attribute__((weak));
+bool    exists_substr() __attribute__((weak));
+bool    exists_strjoin() __attribute__((weak));
+bool    exists_strtrim() __attribute__((weak));
+bool    exists_split() __attribute__((weak));
 //bool    exists_() __attribute__((weak));
 
 //LIBFT test func
@@ -77,5 +91,9 @@ void    test_strnstr(int n, bool detail) __attribute__((weak));
 void    test_atoi(int n, bool detail) __attribute__((weak));
 void    test_calloc(int n, bool detail) __attribute__((weak));
 void    test_strdup(int n, bool detail) __attribute__((weak));
+void    test_substr(int n, bool detail) __attribute__((weak));
+void    test_strjoin(int n, bool detail) __attribute__((weak));
+void    test_strtrim(int n, bool detail) __attribute__((weak));
+void    test_split(int n, bool detail) __attribute__((weak));
 //void    test_(int n, bool detail) __attribute__((weak));
 #endif

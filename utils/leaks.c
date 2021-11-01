@@ -78,7 +78,7 @@ static int	counttimes(t_malloc *start)
 	int i = 0;
 	t_malloc *curr = start;
 	while (curr){
-		if (comparemalloc(curr, start)) i++;
+		if (!curr->freed && comparemalloc(curr, start)) i++;
 		curr = curr->next;
 	}
 	return (i);
@@ -121,7 +121,7 @@ void	listleaks()
 {
 	t_malloc *curr = leaks;
 	while (curr){
-		if (isunique(curr)){
+		if (!curr->freed && isunique(curr)){
 			cprintf(LEAK, YELLOW, DEFAULT, curr->file, curr->line, curr->func, counttimes(curr));
 		}
 		curr = curr->next;

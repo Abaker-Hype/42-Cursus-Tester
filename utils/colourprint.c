@@ -68,6 +68,7 @@ void	resultinfo(char *format,...)
 	va_list args;
 	char c;
 	char *str;
+	char **arry;
 	va_start(args, format);
 	for (int i = 0; i < 2; i++){
 		if (i == 0) cprintf("Your result: ", LBLUE, DEFAULT);
@@ -89,6 +90,20 @@ void	resultinfo(char *format,...)
 					break;
 				case 'o': str = va_arg(args, char *);
 					cvprintf("printed", str, strlen(str));
+					break;
+				case 'a': arry = va_arg(args, char **);
+					int i = 0;
+					if (!arry){
+						cvprintf("", NULL, 0);
+						break;
+					}
+					while (arry[i]){
+						printf("\narry[%i] = ", i);
+						cvprintf("", arry[i], strlen(arry[i]));
+						i++;
+					}
+					printf("\narry[%i] = ", i);
+					cvprintf("", arry[i], 1);
 					break;
 				case '*': printf("%s", va_arg(args, char *));
 					break;

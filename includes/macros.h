@@ -2,6 +2,7 @@
 # define MACROS_H
 
 # include <stdlib.h>
+# include <stdbool.h>
 # include <sys/types.h>
 
 # define malloc(X) malloc_track(X, __FILE__, __LINE__, __FUNCTION__)
