@@ -36,11 +36,12 @@ void	test_strnstr(int n, bool detail)
 {
 	bool pass = true;
 	t_case test = strnstr_tests[n];
-	char *search = "Never Gonna To Give You Up! Never Gonna Let You Down! ";
+	char *search = "Never Gonna Give You Up! Never Gonna Let You Down! ";
 	char *result = NULL, *expected = NULL;
 	if (test.segv) {
 		passsegv();
 		if (test.len > 0) search = NULL;
+		else expected = search;
 	}
 	if (detail) testinfo("ssi", n + 1, search, test.find, test.len);
 	result = ft_strnstr(search, test.find, test.len);
