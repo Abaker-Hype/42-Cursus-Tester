@@ -37,15 +37,19 @@ void printgrade(bool detail)
 			if(segvpass) c = GREEN;
 			break;
 		case ABRT:
-			c = 'A';
+			grade = 'A';
 			break;
 		case TIME:
-			c = 'T';
+			grade = 'T';
+			break;
+		case BUS:
+			grade = 'B';
 			break;
 		default:;
 	}
 	cprintf("%c", c, DEFAULT, grade);
 	if (hasleaks()) freeleaks();
+	if (useroutput()) resetprinted();
 }
 
 void	gradeinfo()

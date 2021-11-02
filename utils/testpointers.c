@@ -27,7 +27,14 @@ testfunc libft[] = {
 	{&test_substr, &exists_substr, &tests_substr, "ft_substr", false},
 	{&test_strjoin, &exists_strjoin, &tests_strjoin, "ft_strjoin", false},
 	{&test_strtrim, &exists_strtrim, &tests_strtrim, "ft_strtrim", false},
-	{&test_split, &exists_split, &tests_split, "ft_split", false}
+	{&test_split, &exists_split, &tests_split, "ft_split", false},
+	{&test_itoa, &exists_itoa, &tests_itoa, "ft_itoa", false},
+	{&test_strmapi, &exists_strmapi, &tests_strmapi, "ft_strmapi", false},
+	{&test_striteri, &exists_striteri, &tests_striteri, "ft_striteri", false},
+	{&test_putchar_fd, &exists_putchar_fd, &tests_putchar_fd, "ft_putchar_fd", false},
+	{&test_putstr_fd, &exists_putstr_fd, &tests_putstr_fd, "ft_putstr_fd", false},
+	{&test_putendl_fd, &exists_putendl_fd, &tests_putendl_fd, "ft_putendl_fd", false},
+	{&test_putnbr_fd, &exists_putnbr_fd, &tests_putnbr_fd, "ft_putnbr_fd", false}
 };
 
 int testcount(tester t)

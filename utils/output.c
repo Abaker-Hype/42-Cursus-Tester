@@ -26,7 +26,7 @@ static void	appendprint(const char *print, size_t len)
 
 ssize_t write(int fd, const void *buff, size_t nbyte)
 {
-	appendprint(buff, nbyte);
+	if (nbyte > 0) appendprint(buff, nbyte);
 	printlen += nbyte;
 	return (nbyte);
 }
@@ -47,8 +47,6 @@ char *useroutput()
 
 bool checkoutput(char *compare, int len)
 {
-	int	i = 0;
-	if (len != printlen || memcmp(compare, printed, len) != 0)
-		return (false);
-	return (true);
+	if (!compare) return (!printed);
+	return (len == printlen &&  memcmp(compare, printed, len) == 0);
 }

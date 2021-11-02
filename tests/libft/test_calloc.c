@@ -1,4 +1,3 @@
-#include "macros.h"
 #include "tester.h"
 
 typedef struct s_case{
@@ -30,7 +29,7 @@ void	test_calloc(int n, bool detail)
 	void *expected = calloc(test.count, test.size);
 	if (!result || memcmp(result, expected, calloc_tests[n].count) != 0)pass = false;
 	if (detail) resultinfo("v", result, test.count * test.size, expected, test.count * test.size);
-	if (result) free(result);
+	if (result) free_track(result);
 	if (expected) free(expected);
 	if (pass)setgrade(PASS);
 }

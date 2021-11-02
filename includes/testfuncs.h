@@ -6,6 +6,9 @@ char *substr(char *str, int start, int len) __attribute__((weak));
 char *strjoin(char *s1, char *s2) __attribute__((weak));
 char *strtrim(char *str, char *set) __attribute__((weak));
 char **split(char *str, char c) __attribute__((weak));
+char *itoa(int n) __attribute__((weak));
+char *strmapi(char const *s, char (*f)(unsigned int, char));
+void striteri(char *s, void (*f)(unsigned int, char *));
 
 //LIBFT tests count
 int     tests_bzero() __attribute__((weak));
@@ -35,6 +38,13 @@ int     tests_substr() __attribute__((weak));
 int     tests_strjoin() __attribute__((weak));
 int     tests_strtrim() __attribute__((weak));
 int     tests_split() __attribute__((weak));
+int     tests_itoa() __attribute__((weak));
+int     tests_strmapi() __attribute__((weak));
+int     tests_striteri() __attribute__((weak));
+int     tests_putchar_fd() __attribute__((weak));
+int     tests_putstr_fd() __attribute__((weak));
+int     tests_putendl_fd() __attribute__((weak));
+int     tests_putnbr_fd() __attribute__((weak));
 //int     tests_() __attribute__((weak));
 
 //LIBFT exists
@@ -65,6 +75,13 @@ bool    exists_substr() __attribute__((weak));
 bool    exists_strjoin() __attribute__((weak));
 bool    exists_strtrim() __attribute__((weak));
 bool    exists_split() __attribute__((weak));
+bool    exists_itoa() __attribute__((weak));
+bool    exists_strmapi() __attribute__((weak));
+bool    exists_striteri() __attribute__((weak));
+bool    exists_putchar_fd() __attribute__((weak));
+bool    exists_putstr_fd() __attribute__((weak));
+bool    exists_putendl_fd() __attribute__((weak));
+bool    exists_putnbr_fd() __attribute__((weak));
 //bool    exists_() __attribute__((weak));
 
 //LIBFT test func
@@ -95,5 +112,12 @@ void    test_substr(int n, bool detail) __attribute__((weak));
 void    test_strjoin(int n, bool detail) __attribute__((weak));
 void    test_strtrim(int n, bool detail) __attribute__((weak));
 void    test_split(int n, bool detail) __attribute__((weak));
+void    test_itoa(int n, bool detail) __attribute__((weak));
+void    test_strmapi(int n, bool detail) __attribute__((weak));
+void    test_striteri(int n, bool detail) __attribute__((weak));
+void    test_putchar_fd(int n, bool detail) __attribute__((weak));
+void    test_putstr_fd(int n, bool detail) __attribute__((weak));
+void    test_putendl_fd(int n, bool detail) __attribute__((weak));
+void    test_putnbr_fd(int n, bool detail) __attribute__((weak));
 //void    test_(int n, bool detail) __attribute__((weak));
 #endif

@@ -9,6 +9,12 @@ t_case split_tests[] = {
 	{"test split", ' '},
 	{"test split", 'a'},
 	{"         ", ' '},
+	{"aaaaatacos", 'a'},
+	{"17013aaaaa", 'a'},
+	{"", 'f'},
+	{"0 0 0 0 0 0 0", ' '},
+	{"|Some|| ||random|string|||||| !||", '|'},
+	{"\0aa\\0bbb", '\0'},
 	{NULL, '\0'}
 };
 

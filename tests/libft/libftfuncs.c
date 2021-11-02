@@ -53,8 +53,7 @@ char **split(char *str, char c)
 	char **arry = malloc(sizeof(char *) * (splits + 1));
 	if (!arry) return (NULL);
 	arry[splits] = NULL;
-	int i= 0, j = 0;
-	while (i < splits){
+	for (int i = 0, j = 0; i < splits;){
 		if (str[j] == c) j++;
 		else {
 			int k = 0;
@@ -66,4 +65,43 @@ char **split(char *str, char c)
 		}
 	}
 	return (arry);
+}
+
+char *itoa(int n)
+{
+	bool neg = n < 0;
+	unsigned int un = n * (1 + (-2 * neg));
+	int d = 1 + neg;
+	for (;n > 9 || n < -9; d++)
+		n /= 10;
+	char *num = malloc(sizeof(char) * (d + 1));
+	if (!num) return (NULL);
+	num[d] = '\0';
+	while (d > 0){
+		d--;
+		if (d == 0 && neg){
+			num[0] = '-';
+			break;
+		}
+		num[d] = ((un % 10)) + '0';
+		un /= 10;
+	}
+	return (num);
+}
+
+char *strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	if (!s) return (NULL);
+	char *str = strdup(s);
+	if (!str) return (NULL);
+	for (unsigned int i = 0; str[i] != '\0'; i++)
+		str[i] = (*f)(i, str[i]);
+	return (str);
+}
+
+void striteri(char *s, void (*f)(unsigned int, char *))
+{
+	if (!s) return;
+	for (unsigned int i = 0; s[i] != '\0'; i++)
+		(*f)(i, s + i);
 }

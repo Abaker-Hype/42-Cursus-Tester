@@ -1,4 +1,3 @@
-#include "macros.h"
 #include "tester.h"
 
 typedef struct s_case{
@@ -34,7 +33,7 @@ void	test_strdup(int n, bool detail)
 	if (!result && result != expected) pass = false;
 	else if (result && (result == test.str || memcmp(result, expected, strlen(test.str)) != 0))pass = false; 
 	if (detail) resultinfo("s", result, expected);
-	if (result && result != test.str)free(result);
+	if (result && result != test.str) free_track(result);
 	free(expected);
 	if (pass)setgrade(PASS);
 }
