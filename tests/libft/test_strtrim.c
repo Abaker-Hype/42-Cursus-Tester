@@ -37,7 +37,7 @@ void	test_strtrim(int n, bool detail)
 	expected = strtrim(test.str, test.set);
 	if ((!result && expected) || (result && (!expected || result == test.str || strcmp(result, expected) != 0))) pass = false;
 	if (detail) resultinfo("s", result, expected);
-	if (result && result != test.str) free_track(result);
+	if (result) free_track(result);
 	if (expected) free(expected);
 	if (pass) setgrade(PASS);
 }

@@ -63,6 +63,8 @@ void	gradeinfo()
 	cprintf(" = SEGV  ",LBLUE, DEFAULT);
 	cprintf("S", GREEN, DEFAULT);
 	cprintf(" = SEGV(PASS)\n",LBLUE, DEFAULT);
+	cprintf("B", RED, DEFAULT);
+	cprintf(" = Bus Error ", LBLUE, DEFAULT);
 	cprintf("T", RED, DEFAULT);
 	cprintf(" = Timeout ",LBLUE, DEFAULT);
 	cprintf("A", RED, DEFAULT);

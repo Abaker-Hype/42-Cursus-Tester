@@ -46,6 +46,7 @@ void	test_memmove(int n, bool detail)
 			if (detail) testinfo("vsi", n + 1, i1, 15, i2, test.len);
 		} else {
 			i1 = src1;
+			if (test.len == 0) expected = src2;
 			if (detail) testinfo("vvi", n + 1, i1, 15, i2, 15, test.len);
 		}
 	} else if (test.dest){
@@ -69,7 +70,7 @@ void	test_memmove(int n, bool detail)
 	}
 	result = ft_memmove(i1, i2, test.len);
 	if (!test.segv) expected = memmove(e1, e2, test.len);
-	if ((test.segv && result != expected) || (!test.segv && memcmp(result, expected, 15) != 0))pass = false;
+	if ((!result && expected) || (result && (!expected || memcmp(result, expected, 15) != 0)))pass = false;
 	if (detail) resultinfo("v", result, 15, expected, 15);
 	if(pass)setgrade(PASS);
 }
