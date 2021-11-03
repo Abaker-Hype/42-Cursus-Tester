@@ -29,7 +29,7 @@ static void initcols()
 		if (args.group) col[0] = ncmp(col[0], strlen(args.group));
 		for (int i = 0; i < size; i++){
 			if (!args.group) col[0] = ncmp(col[0], strlen(arry[i].group));
-			if (!args.group || strcmp(args.group, arry[i].group) == 0){
+			if ((!args.group && !args.bonus) || (args.bonus && arry[i].bonus) || (args.group && strcmp(args.group, arry[i].group) == 0)){
 				col[1] = ncmp(col[1], strlen(arry[i].name));
 				col[2] = ncmp(col[2], (*arry[i].tests)());
 			}

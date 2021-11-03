@@ -63,6 +63,7 @@ static void runfunctest(testfunc *test,int start, int total)
 static void	funchandler(testfunc *test)
 {
 	if (args.group && strcmp(args.group, test->group) != 0) return;
+	if (args.bonus && !test->bonus) return;
 	int start = args.test;
 	int total = 1;
 	if (start == -1){

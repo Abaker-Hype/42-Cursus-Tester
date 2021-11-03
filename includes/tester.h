@@ -69,6 +69,7 @@ typedef struct {
 	tester testing;
 	testfunc *func;
 	char *group;
+	bool bonus;
 	int test;
 	bool detail;
 }	t_args;

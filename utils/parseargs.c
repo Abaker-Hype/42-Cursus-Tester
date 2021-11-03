@@ -12,6 +12,7 @@ static void	loaddefaultargs()
 {
 	args.func = NULL;
 	args.group = NULL;
+	args.bonus = false;
 	args.test = -1;
 	args.detail = false;
 }
@@ -38,8 +39,11 @@ bool parseargs(int argc, char **argv)
 	}
 	if (argc == 2) return (true);
 	args.func = gettestbyname(args.testing, argv[2]);
-	if (!args.func && chkgroup(args.testing, argv[2])) args.group = argv[2];
-	if (!args.func && !args.group) cprintf(WARNFUNC, YELLOW, DEFAULT, argv[2], argv[1]);
+	if (!args.func){
+		if (strcmp(argv[2], "Bonus") == 0) args.bonus = true;
+		else if (chkgroup(args.testing, argv[2])) args.group = argv[2];
+		else cprintf(WARNFUNC, YELLOW, DEFAULT, argv[2], argv[1]);
+	}
 	if (argc == 3) return (true);
 	if (args.func){
 		if (strcmp(argv[3], "detail") == 0) args.detail = true;

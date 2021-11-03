@@ -7,8 +7,15 @@ char *strjoin(char *s1, char *s2) __attribute__((weak));
 char *strtrim(char *str, char *set) __attribute__((weak));
 char **split(char *str, char c) __attribute__((weak));
 char *itoa(int n) __attribute__((weak));
-char *strmapi(char const *s, char (*f)(unsigned int, char));
-void striteri(char *s, void (*f)(unsigned int, char *));
+char *strmapi(char const *s, char (*f)(unsigned int, char)) __attribute__((weak));
+void striteri(char *s, void (*f)(unsigned int, char *)) __attribute__((weak));
+void freelst(t_list *start) __attribute__((weak));
+t_list *genlist(int n) __attribute__((weak));
+t_list *lstnew(void *data) __attribute__((weak));
+void lstadd_front(t_list **list, t_list *new) __attribute__((weak));
+void lstadd_back(t_list **list, t_list *new) __attribute__((weak));
+t_list *lstlast(t_list *start) __attribute__((weak));
+
 
 //LIBFT tests count
 int     tests_bzero() __attribute__((weak));
@@ -45,6 +52,10 @@ int     tests_putchar_fd() __attribute__((weak));
 int     tests_putstr_fd() __attribute__((weak));
 int     tests_putendl_fd() __attribute__((weak));
 int     tests_putnbr_fd() __attribute__((weak));
+int     tests_lstnew() __attribute__((weak));
+int     tests_lstadd_front() __attribute__((weak));
+int     tests_lstsize() __attribute__((weak));
+int     tests_lstlast() __attribute__((weak));
 //int     tests_() __attribute__((weak));
 
 //LIBFT exists
@@ -82,6 +93,10 @@ bool    exists_putchar_fd() __attribute__((weak));
 bool    exists_putstr_fd() __attribute__((weak));
 bool    exists_putendl_fd() __attribute__((weak));
 bool    exists_putnbr_fd() __attribute__((weak));
+bool    exists_lstnew() __attribute__((weak));
+bool    exists_lstadd_front() __attribute__((weak));
+bool    exists_lstsize() __attribute__((weak));
+bool    exists_lstlast() __attribute__((weak));
 //bool    exists_() __attribute__((weak));
 
 //LIBFT test func
@@ -119,5 +134,9 @@ void    test_putchar_fd(int n, bool detail) __attribute__((weak));
 void    test_putstr_fd(int n, bool detail) __attribute__((weak));
 void    test_putendl_fd(int n, bool detail) __attribute__((weak));
 void    test_putnbr_fd(int n, bool detail) __attribute__((weak));
+void    test_lstnew(int n, bool detail) __attribute__((weak));
+void    test_lstadd_front(int n, bool detail) __attribute__((weak));
+void    test_lstsize(int n, bool detail) __attribute__((weak));
+void    test_lstlast(int n, bool detail) __attribute__((weak));
 //void    test_(int n, bool detail) __attribute__((weak));
 #endif

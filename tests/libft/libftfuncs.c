@@ -105,3 +105,56 @@ void striteri(char *s, void (*f)(unsigned int, char *))
 	for (unsigned int i = 0; s[i] != '\0'; i++)
 		(*f)(i, s + i);
 }
+
+void freelst(t_list *curr)
+{
+	t_list *next;
+	while (curr)
+	{
+		next = curr->next;
+		if (curr->content) free(curr->content);
+		free(curr);
+		curr = next;
+	}
+}
+
+t_list *lstnew(void *data)
+{
+	t_list *list = malloc(sizeof(t_list));
+	list->content = data;
+	list->next = NULL;
+	return (list);
+}
+
+void lstadd_front(t_list **list, t_list *new)
+{
+	if (!list || !new) return;
+	new->next = *list;
+	*list = new;
+}
+
+void lstadd_back(t_list **list, t_list *new)
+{
+	if (!list || !new) return;
+	t_list *curr = *list;
+	while (curr->next)
+		curr = curr->next;
+	curr->next = new;
+}
+
+t_list *lstlast(t_list *curr)
+{
+	if (!curr) return (NULL);
+	while (curr->next)
+		curr = curr->next;
+	return (curr);
+}
+
+t_list *genlist(int n)
+{
+	if (n == 0) return (NULL);
+	t_list *start = lstnew(itoa(0));
+	for (int i = 1; i < n; i++)
+		lstadd_back(&start, lstnew(itoa(i)));
+	return (start);
+}

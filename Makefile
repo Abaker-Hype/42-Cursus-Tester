@@ -16,7 +16,7 @@ IVDTEST = "Invalid or Not Coded (yet) Tester\n"
 define INFO
 Welcome to this pile of trash
 
-Usages: make [tester] [opt:funcname or group] [opt:testnum or "detail"]
+Usages: make [tester] [opt:funcname, groupname or "Bonus"] [opt:testnum or "detail"]
 
 Available Testers:
   libft

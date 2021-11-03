@@ -34,7 +34,11 @@ testfunc libft[] = {
 	{&test_putchar_fd, &exists_putchar_fd, &tests_putchar_fd, "ft_putchar_fd", "Part-2", false},
 	{&test_putstr_fd, &exists_putstr_fd, &tests_putstr_fd, "ft_putstr_fd", "Part-2", false},
 	{&test_putendl_fd, &exists_putendl_fd, &tests_putendl_fd, "ft_putendl_fd", "Part-2", false},
-	{&test_putnbr_fd, &exists_putnbr_fd, &tests_putnbr_fd, "ft_putnbr_fd", "Part-2", false}
+	{&test_putnbr_fd, &exists_putnbr_fd, &tests_putnbr_fd, "ft_putnbr_fd", "Part-2", false},
+	{&test_lstnew, &exists_lstnew, &tests_lstnew, "ft_lstnew", "Bonus", true},
+	{&test_lstadd_front, &exists_lstadd_front, &tests_lstadd_front, "ft_lstadd_front", "Bonus", true},
+	{&test_lstsize, &exists_lstsize, &tests_lstsize, "ft_lstsize", "Bonus", true},
+	{&test_lstlast, &exists_lstlast, &tests_lstlast, "ft_lstlast", "Bonus", true}
 };
 
 
