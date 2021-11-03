@@ -15,11 +15,11 @@ void	passsegv()
 	segvpass = true;
 }
 
-void printgrade(bool detail)
+void printgrade()
 {
 	char grade = 'F';
 	colour c = RED;
-	if (detail){
+	if (args.detail){
 		if (segvpass && result == SEGV) cprintf(SEGVPASS, YELLOW, DEFAULT);
 		if (result == PASS && hasleaks()) listleaks();
 		cprintf("Grade: ", LBLUE, DEFAULT);

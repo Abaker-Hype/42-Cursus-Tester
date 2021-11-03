@@ -13,13 +13,13 @@ TESTERS = libft
 
 #Strings
 IVDTEST = "Invalid or Not Coded (yet) Tester\n"
-define INFO =
+define INFO
 Welcome to this pile of trash
 
-Usages: make [tester] [opt:func name] [opt:testnum]
+Usages: make [tester] [opt:funcname or group] [opt:testnum or "detail"]
 
 Available Testers:
-  libft(Slightly made)
+  libft
   printf(SoonTM)
   gnl(SoonTM)
   Whatever I decide to SUFFER on to add!
@@ -44,7 +44,6 @@ ifeq ($(OS),Darwin;)
 else ifeq ($(OS),Linux;)
 	FLAGS += $(LINUX)
 endif
-
 
 #Targets
 all:

@@ -17,10 +17,10 @@ void	stoptimer()
 	microsec += (long)(((seconds * 1000000) + end.tv_usec) - start.tv_usec);
 }
 
-void	printtime(int tests, bool detail)
+void	printtime(int tests)
 {
 	if (tests == 0)tests = 1;
-	if (detail)cprintf("    Total test time =", WHITE, DEFAULT);
+	if (args.detail)cprintf("    Total test time =", WHITE, DEFAULT);
 	cprintf(" %.4fms", YELLOW, DEFAULT, (double)(microsec/tests)/1000);
 	microsec = 0;
 }

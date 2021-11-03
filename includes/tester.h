@@ -61,29 +61,36 @@ typedef struct {
 	Exists exists;
 	Tests tests;
 	char	*name;
+	char	*group;
 	bool	bonus;
 } testfunc;
 
 typedef struct {
 	tester testing;
 	testfunc *func;
-	int testcount;
-	int maxtests;
+	char *group;
 	int test;
-	bool detailed;
+	bool detail;
 }	t_args;
 
+//Global Var
+extern t_args args;
+
 //Testing Funcs
-void	testhandler(testfunc test, int start, int colwidth, bool detailed);
-int testcount(tester t);
-int getmaxtests(tester t);
+bool	parseargs(int argc,char **argv);
+void	loadcolumns();
+void	addcolsep(int printed, int c);
+void	testhandler();
+testfunc *gettestarry(tester t);
+int		gettestsize(tester t);
 testfunc *gettest(tester t, int n);
 testfunc *gettestbyname(tester t, char *str);
+bool	chkgroup(tester t, char *str);
 
 //Grade Funcs
 void	setgrade(grade g);
 void	passsegv();
-void	printgrade(bool detail);
+void	printgrade();
 void	gradeinfo();
 
 //Text Funcs
@@ -94,7 +101,7 @@ void	resultinfo(char *format,...);
 //Timer Funcs
 void	starttimer();
 void	stoptimer();
-void	printtime(int tests, bool detail);
+void	printtime(int tests);
 
 //Write Chk Funcs
 bool	checkoutput(char *compare, int len);
