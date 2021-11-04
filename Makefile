@@ -9,14 +9,14 @@ UTILS = ./utils/
 USRFLS = ./userfiles/
 
 #Testers list
-TESTERS = libft
+TESTERS = libft printf
 
 #Strings
 IVDTEST = "Invalid or Not Coded (yet) Tester\n"
 define INFO
 Welcome to this pile of trash
 
-Usages: make [tester] [opt:funcname, groupname or "Bonus"] [opt:testnum or "detail"]
+Usages: make [tester] [opt:funcname, groupname or "Bonus"] [(Only after a funcname) opt:testnum or "detail"]
 
 Available Testers:
   libft
@@ -26,6 +26,7 @@ Available Testers:
 
 Make sure this folder is outside the project you are wanting to Test!
 To update project paths for testing please edit the script.sh file (The Path variables are at the top)
+If you want to ake sure your Bonuses get tested then have the Bonus Flag in your Makefiles Make Re target
 
 Note this is in its pretty early stages. Not every feature is added yet!
 If you have any ideas/bugs/errors please let me know.
@@ -34,10 +35,16 @@ endef
 export INFO
 
 #compile
+LIB = -L$(USRFLS)
+ifeq ($(TESTING), libft)
+	LIB += -lft
+else ifeq ($(TESTING), printf)
+	LIB += -lftprintf
+endif
 CC = gcc
-FLAGS = -I$(INCS)
-MAC = -L$(USRFLS) -lft -undefined dynamic_lookup
-LINUX = -lbsd -Wl,--whole-archive -L$(USRFLS) -lft -Wl,--no-whole-archive -D LINUX
+FLAGS = -Wno-format-security -I$(INCS)
+MAC = $(LIB) -undefined dynamic_lookup
+LINUX = -lbsd -Wl,--whole-archive $(LIB) -Wl,--no-whole-archive -D LINUX
 RUN = tester
 ifeq ($(OS),Darwin;)
 	FLAGS += $(MAC)

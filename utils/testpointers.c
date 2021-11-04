@@ -41,12 +41,17 @@ testfunc libft[] = {
 	{&test_lstlast, &exists_lstlast, &tests_lstlast, "ft_lstlast", "Bonus", true}
 };
 
+testfunc ftprintf[] = {
+	{&test_basic, &exists_printf, &tests_basic, "basic", "Manditory", false},
+	{&test_percent, &exists_printf, &tests_percent, "percent", "Manditory", false}
+};
+
 
 testfunc *gettestarry(tester t)
 {
 	switch (t){
 		case LIBFT: return (libft);
-			break;
+		case PRINTF: return (ftprintf); 
 		default: return NULL;
 	}
 }
@@ -55,7 +60,7 @@ int gettestsize(tester t)
 {
 	switch (t){
 		case LIBFT: return (arraysize(libft));
-			break;
+		case PRINTF: return (arraysize(ftprintf));
 		default: return (0);
 	}
 }

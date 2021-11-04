@@ -139,4 +139,19 @@ void    test_lstadd_front(int n, bool detail) __attribute__((weak));
 void    test_lstsize(int n, bool detail) __attribute__((weak));
 void    test_lstlast(int n, bool detail) __attribute__((weak));
 //void    test_(int n, bool detail) __attribute__((weak));
+
+//PRINTF
+
+//PRINTF exists
+bool    exists_printf() __attribute__((weak));
+
+//PRINTF tests
+int     tests_basic() __attribute__((weak));
+int     tests_percent() __attribute__((weak));
+//int     tests_() __attribute__((weak));
+
+//PRINTF test func
+void    test_basic(int n, bool detail) __attribute__((weak));
+void    test_percent(int n, bool detail) __attribute__((weak));
+//void    test_(int n, bool detail) __attribute__((weak));
 #endif

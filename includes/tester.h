@@ -20,6 +20,16 @@
 
 //Macros
 # define arraysize(X) sizeof(X)/sizeof(X[0])
+# define printfcore(format, ...) \
+	bool pass = true; \
+	char *output = NULL; \
+	int result, expected; \
+	result = ft_printf(format, __VA_ARGS__); \
+	expected = asprintf(&output, format, __VA_ARGS__); \
+	if (result != expected || !checkoutput(output, expected))pass = false; \
+	if (detail) resultinfo("i*o", result," - ", useroutput(), expected, " - ", output); \
+	if (output) free(output); \
+	if (pass) setgrade(PASS);
 
 //Function pointer types
 typedef void (*Run)(int i, bool b);
