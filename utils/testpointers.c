@@ -1,5 +1,7 @@
 #include "tester.h"
 
+#define TESTARRY(name, group, bonus) {&test_##name, &exists_##name, %tests_##name, name, group, bonus}
+
 testfunc libft[] = {
 	{&test_isalpha, &exists_isalpha, &tests_isalpha, "ft_isalpha", "Part-1", false},
 	{&test_isdigit, &exists_isdigit, &tests_isdigit, "ft_isdigit", "Part-1", false},
@@ -43,7 +45,11 @@ testfunc libft[] = {
 
 testfunc ftprintf[] = {
 	{&test_basic, &exists_printf, &tests_basic, "basic", "Manditory", false},
-	{&test_percent, &exists_printf, &tests_percent, "percent", "Manditory", false}
+	{&test_percent, &exists_printf, &tests_percent, "percent", "Manditory", false},
+	{&test_char, &exists_printf, &tests_char, "char", "Manditory", false},
+	{&test_str, &exists_printf, &tests_str, "str", "Manditory", false},
+	{&test_int, &exists_printf, &tests_int, "int", "Manditory", false},
+	{&test_uint, &exists_printf, &tests_uint, "uint", "Manditory", false}
 };
 
 

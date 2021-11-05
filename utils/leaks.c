@@ -42,7 +42,7 @@ static t_malloc *findnode(void *ptr)
 {
 	t_malloc *curr = leaks;
 	while (curr){
-		if (curr->p == ptr) break;
+		if (curr->p == ptr && !curr->freed) break;
 		curr = curr->next;
 	}
 	return (curr);
@@ -66,7 +66,7 @@ static bool isunique(t_malloc *search)
 {
 	t_malloc *curr = leaks;
 	while (curr){
-		if (curr == search) break;
+		if (curr == search) return (true);
 		if (comparemalloc(curr, search)) return (false);
 		curr = curr->next;
 	}
@@ -121,7 +121,7 @@ void	listleaks()
 {
 	t_malloc *curr = leaks;
 	while (curr){
-		if (!curr->freed && isunique(curr)){
+		if (!curr->freed){
 			cprintf(LEAK, YELLOW, DEFAULT, curr->file, curr->line, curr->func, counttimes(curr));
 		}
 		curr = curr->next;

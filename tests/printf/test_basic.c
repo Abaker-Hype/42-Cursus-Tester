@@ -1,15 +1,11 @@
 #include "tester.h"
 
-typedef struct s_case{
-		char *str;
-} t_case;
-
-t_case basic_tests[] = {
-	{""},
-	{"Simple Print"},
-	{"HELP ME PLEASE I AM GOING INSANE!"},
-	{"Line 1\nLine 2"},
-	{"\r\v\t\n\f"}
+printftest basic_tests[] = {
+	{"",0, "s",{}},
+	{"Simple Print",0,"s",{}},
+	{"HELP ME PLEASE I AM GOING INSANE!",0,"s",{}},
+	{"Line 1\nLine 2",0,"s",{}},
+	{"\r\v\t\n\f",0,"s",{}}
 };
 
 int tests_basic()
@@ -19,7 +15,5 @@ int tests_basic()
 
 void	test_basic(int n, bool detail)
 {
-	t_case test = basic_tests[n];
-	if (detail) testinfo("s", n + 1, test.str);
-	printfcore(test.str, NULL);
+	printftestcore(basic_tests[n], n, detail);
 }

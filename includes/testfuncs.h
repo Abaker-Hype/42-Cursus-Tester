@@ -141,6 +141,21 @@ void    test_lstlast(int n, bool detail) __attribute__((weak));
 //void    test_(int n, bool detail) __attribute__((weak));
 
 //PRINTF
+typedef struct {
+	char *format;
+	int datasize;
+	char *info;
+    union {
+		char c;
+		char *s;
+		int i;
+		unsigned int u;
+		void *p;
+	} data[7];
+} printftest;
+
+//PRINTF Core Funcs
+void	printftestcore(printftest test, int testnum, bool detail) __attribute__((weak));
 
 //PRINTF exists
 bool    exists_printf() __attribute__((weak));
@@ -148,10 +163,18 @@ bool    exists_printf() __attribute__((weak));
 //PRINTF tests
 int     tests_basic() __attribute__((weak));
 int     tests_percent() __attribute__((weak));
+int     tests_char() __attribute__((weak));
+int     tests_str() __attribute__((weak));
+int     tests_int() __attribute__((weak));
+int     tests_uint() __attribute__((weak));
 //int     tests_() __attribute__((weak));
 
 //PRINTF test func
 void    test_basic(int n, bool detail) __attribute__((weak));
 void    test_percent(int n, bool detail) __attribute__((weak));
+void    test_char(int n, bool detail) __attribute__((weak));
+void    test_str(int n, bool detail) __attribute__((weak));
+void    test_int(int n, bool detail) __attribute__((weak));
+void    test_uint(int n, bool detail) __attribute__((weak));
 //void    test_(int n, bool detail) __attribute__((weak));
 #endif

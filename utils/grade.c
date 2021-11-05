@@ -21,7 +21,7 @@ void printgrade()
 	colour c = RED;
 	if (args.detail){
 		if (segvpass && result == SEGV) cprintf(SEGVPASS, YELLOW, DEFAULT);
-		if (result == PASS && hasleaks()) listleaks();
+		if (hasleaks()) listleaks();
 		cprintf("Grade: ", LBLUE, DEFAULT);
 	}
 	switch (result){

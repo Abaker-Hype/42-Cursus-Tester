@@ -1,14 +1,10 @@
 #include "tester.h"
 
-typedef struct s_case{
-		char *str;
-} t_case;
-
-t_case percent_tests[] = {
-	{" %% "},
-	{" %% %% "},
-	{"w%w%w%w"},
-	{"%%%%%%%%"}
+printftest percent_tests[] = {
+	{" %% ",0,"s",{}},	
+	{" %% %% ",0,"s",{}},
+	{"w%w%w%w",0,"s",{}},
+	{"%%%%%%%%",0,"s",{}}
 };
 
 int tests_percent()
@@ -18,7 +14,5 @@ int tests_percent()
 
 void	test_percent(int n, bool detail)
 {
-	t_case test = percent_tests[n];
-	if (detail) testinfo("s", n + 1, test.str);
-	printfcore(test.str, NULL);
+	printftestcore(percent_tests[n], n, detail);
 }
