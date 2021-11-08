@@ -1,7 +1,5 @@
 #include "tester.h"
 
-#define TESTARRY(name, group, bonus) {&test_##name, &exists_##name, %tests_##name, name, group, bonus}
-
 testfunc libft[] = {
 	{&test_isalpha, &exists_isalpha, &tests_isalpha, "ft_isalpha", "Part-1", false},
 	{&test_isdigit, &exists_isdigit, &tests_isdigit, "ft_isdigit", "Part-1", false},
@@ -44,12 +42,17 @@ testfunc libft[] = {
 };
 
 testfunc ftprintf[] = {
-	{&test_basic, &exists_printf, &tests_basic, "basic", "Manditory", false},
-	{&test_percent, &exists_printf, &tests_percent, "percent", "Manditory", false},
-	{&test_char, &exists_printf, &tests_char, "char", "Manditory", false},
-	{&test_str, &exists_printf, &tests_str, "str", "Manditory", false},
-	{&test_int, &exists_printf, &tests_int, "int", "Manditory", false},
-	{&test_uint, &exists_printf, &tests_uint, "uint", "Manditory", false}
+	{&test_type_basic, &exists_printf, &tests_type_basic, "type_basic", "Manditory", false},
+	{&test_type_percent, &exists_printf, &tests_type_percent, "type_%", "Manditory", false},
+	{&test_type_c, &exists_printf, &tests_type_c, "type_c", "Manditory", false},
+	{&test_type_s, &exists_printf, &tests_type_s, "type_s", "Manditory", false},
+	{&test_type_i, &exists_printf, &tests_type_i, "type_i", "Manditory", false},
+	{&test_type_d, &exists_printf, &tests_type_d, "type_d", "Manditory", false},
+	{&test_type_u, &exists_printf, &tests_type_u, "type_u", "Manditory", false},
+	{&test_type_x, &exists_printf, &tests_type_x, "type_x", "Manditory", false},
+	{&test_type_X, &exists_printf, &tests_type_X, "type_X", "Manditory", false},
+	{&test_type_p, &exists_printf, &tests_type_p, "type_p", "Manditory", false},
+	{&test_type_mix, &exists_printf, &tests_type_mix, "type_mix", "Manditory", false}
 };
 
 

@@ -44,6 +44,8 @@ void	testinfo(char *format, int test,...)
 		switch (format[i]){
 			case 'i': printf("int[%i] ", va_arg(args, int));
 				break;
+			case 'u' :printf("unsigned int[%u] ", va_arg(args, unsigned int));
+				break;
 			case 'c': c = va_arg(args, int);
 				cvprintf("char", &c, 1);
 				break;
@@ -89,8 +91,7 @@ void	resultinfo(char *format,...)
 					cvprintf("", str, va_arg(args, int));
 					break;
 				case 'o': str = va_arg(args, char *);
-					if (str) cvprintf("printed", str, strlen(str));
-					else cvprintf("printed","", 0);
+					cvprintf("printed", str, va_arg(args, int));
 					break;
 				case 'a': arry = va_arg(args, char **);
 					int i = 0;

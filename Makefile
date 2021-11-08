@@ -42,7 +42,7 @@ else ifeq ($(TESTING), printf)
 	LIB += -lftprintf
 endif
 CC = gcc
-FLAGS = -Wno-format-security -I$(INCS)
+FLAGS = -Wno-constant-conversion -Wno-format-security -I$(INCS)
 MAC = $(LIB) -undefined dynamic_lookup
 LINUX = -lbsd -Wl,--whole-archive $(LIB) -Wl,--no-whole-archive -D LINUX
 RUN = tester

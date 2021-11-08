@@ -161,20 +161,30 @@ void	printftestcore(printftest test, int testnum, bool detail) __attribute__((we
 bool    exists_printf() __attribute__((weak));
 
 //PRINTF tests
-int     tests_basic() __attribute__((weak));
-int     tests_percent() __attribute__((weak));
-int     tests_char() __attribute__((weak));
-int     tests_str() __attribute__((weak));
-int     tests_int() __attribute__((weak));
-int     tests_uint() __attribute__((weak));
-//int     tests_() __attribute__((weak));
+int     tests_type_basic() __attribute__((weak));
+int     tests_type_percent() __attribute__((weak));
+int     tests_type_c() __attribute__((weak));
+int     tests_type_s() __attribute__((weak));
+int     tests_type_i() __attribute__((weak));
+int     tests_type_d() __attribute__((weak));
+int     tests_type_u() __attribute__((weak));
+int     tests_type_x() __attribute__((weak));
+int     tests_type_X() __attribute__((weak));
+int     tests_type_p() __attribute__((weak));
+int     tests_type_mix() __attribute__((weak));
+//int     tests_type_() __attribute__((weak));
 
 //PRINTF test func
-void    test_basic(int n, bool detail) __attribute__((weak));
-void    test_percent(int n, bool detail) __attribute__((weak));
-void    test_char(int n, bool detail) __attribute__((weak));
-void    test_str(int n, bool detail) __attribute__((weak));
-void    test_int(int n, bool detail) __attribute__((weak));
-void    test_uint(int n, bool detail) __attribute__((weak));
-//void    test_(int n, bool detail) __attribute__((weak));
+void    test_type_basic(int n, bool detail) __attribute__((weak));
+void    test_type_percent(int n, bool detail) __attribute__((weak));
+void    test_type_c(int n, bool detail) __attribute__((weak));
+void    test_type_s(int n, bool detail) __attribute__((weak));
+void    test_type_i(int n, bool detail) __attribute__((weak));
+void    test_type_d(int n, bool detail) __attribute__((weak));
+void    test_type_u(int n, bool detail) __attribute__((weak));
+void    test_type_x(int n, bool detail) __attribute__((weak));
+void    test_type_X(int n, bool detail) __attribute__((weak));
+void    test_type_p(int n, bool detail) __attribute__((weak));
+void    test_type_mix(int n, bool detail) __attribute__((weak));
+//void    test_type_(int n, bool detail) __attribute__((weak));
 #endif

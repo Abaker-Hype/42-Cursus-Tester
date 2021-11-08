@@ -43,7 +43,7 @@ void printftestcore(printftest test, int testnum,  bool detail)
 		default:;
 	}
 	if (result != expected || !checkoutput(output, expected))pass = false;
-	if (detail) resultinfo("i*o", result," - ", useroutput(), expected, " - ", output);
+	if (detail) resultinfo("i*o", result," - ", useroutput(), result, expected, " - ", output, expected);
 	if (output) free(output);
 	if (pass) setgrade(PASS);
 }
