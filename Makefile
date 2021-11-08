@@ -20,7 +20,7 @@ Usages: make [tester] [opt:funcname, groupname or "Bonus"] [(Only after a funcna
 
 Available Testers:
   libft
-  printf(SoonTM)
+  printf(Manditory done)
   gnl(SoonTM)
   Whatever I decide to SUFFER on to add!
 
