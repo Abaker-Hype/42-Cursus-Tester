@@ -170,8 +170,11 @@ int     tests_type_d() __attribute__((weak));
 int     tests_type_u() __attribute__((weak));
 int     tests_type_x() __attribute__((weak));
 int     tests_type_X() __attribute__((weak));
-int     tests_type_p() __attribute__((weak));
-int     tests_type_mix() __attribute__((weak));
+int 	tests_type_p() __attribute__((weak));
+int		tests_type_mix() __attribute__((weak));
+int		tests_flag_hash_no_effect() __attribute__((weak));
+int     tests_flag_hash_type_x() __attribute__((weak));
+int     tests_flag_hash_type_X() __attribute__((weak));
 //int     tests_type_() __attribute__((weak));
 
 //PRINTF test func
@@ -186,5 +189,8 @@ void    test_type_x(int n, bool detail) __attribute__((weak));
 void    test_type_X(int n, bool detail) __attribute__((weak));
 void    test_type_p(int n, bool detail) __attribute__((weak));
 void    test_type_mix(int n, bool detail) __attribute__((weak));
+void    test_flag_hash_no_effect(int n, bool detail) __attribute__((weak));
+void    test_flag_hash_type_x(int n, bool detail) __attribute__((weak));
+void    test_flag_hash_type_X(int n, bool detail) __attribute__((weak));
 //void    test_type_(int n, bool detail) __attribute__((weak));
 #endif

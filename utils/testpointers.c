@@ -52,7 +52,10 @@ testfunc ftprintf[] = {
 	{&test_type_x, &exists_printf, &tests_type_x, "type_x", "Manditory", false},
 	{&test_type_X, &exists_printf, &tests_type_X, "type_X", "Manditory", false},
 	{&test_type_p, &exists_printf, &tests_type_p, "type_p", "Manditory", false},
-	{&test_type_mix, &exists_printf, &tests_type_mix, "type_mix", "Manditory", false}
+	{&test_type_mix, &exists_printf, &tests_type_mix, "type_mix", "Manditory", false},
+	{&test_flag_hash_no_effect, &exists_printf, &tests_flag_hash_no_effect, "no_effect_#", "Flag-#", true},
+	{&test_flag_hash_type_x, &exists_printf, &tests_flag_hash_type_x, "type_x_#", "Flag-#", true},
+	{&test_flag_hash_type_X, &exists_printf, &tests_flag_hash_type_X, "type_X_#", "Flag-#", true}
 };
 
 
