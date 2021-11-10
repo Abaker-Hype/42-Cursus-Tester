@@ -1,7 +1,7 @@
 #include "tester.h"
 
-char *s = "tacos";
-int i = 215600;
+static char *s = "tacos";
+static int i = 215600;
 
 printftest type_p_tests[] = {
 	{" %p ",1, "su",{{.p=&test_type_p}}},

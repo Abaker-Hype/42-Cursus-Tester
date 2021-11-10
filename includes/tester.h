@@ -74,6 +74,7 @@ typedef struct {
 	char *group;
 	bool bonus;
 	int test;
+	int totalran;
 	bool detail;
 }	t_args;
 

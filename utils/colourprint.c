@@ -91,6 +91,7 @@ void	resultinfo(char *format,...)
 					cvprintf("", str, va_arg(args, int));
 					break;
 				case 'o': str = va_arg(args, char *);
+					if (!str) str = "";
 					cvprintf("printed", str, va_arg(args, int));
 					break;
 				case 'a': arry = va_arg(args, char **);

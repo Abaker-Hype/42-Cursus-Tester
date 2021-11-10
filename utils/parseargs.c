@@ -14,6 +14,7 @@ static void	loaddefaultargs()
 	args.group = NULL;
 	args.bonus = false;
 	args.test = -1;
+	args.totalran = 0;
 	args.detail = false;
 }
 

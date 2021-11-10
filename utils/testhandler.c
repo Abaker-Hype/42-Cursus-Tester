@@ -49,6 +49,7 @@ static void runfunctest(testfunc *test,int start, int total)
 			starttimer();
 			waitpid(tester, NULL, 0);
 			stoptimer();
+			args.totalran++;
 			if (args.detail){
 				printtime(1);
 				printf("\n");
@@ -95,4 +96,5 @@ void testhandler()
 		for (int i = 0; i < tests; i++)
 			funchandler(gettest(args.testing, i));
 	}
+	cprintf("\nTotal Tests Ran: %i\n", GREEN, DEFAULT, args.totalran);
 }
