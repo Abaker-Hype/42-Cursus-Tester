@@ -19,8 +19,8 @@ Welcome to this pile of trash
 Usages: make [tester] [opt:funcname, groupname or "Bonus"] [(Only after a funcname) opt:testnum or "detail"]
 
 Available Testers:
-  libft
-  printf(Manditory done)
+  libft (Not all bonuses added)
+  printf
   gnl(SoonTM)
   Whatever I decide to SUFFER on to add!
 
