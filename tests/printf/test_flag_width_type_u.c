@@ -7,8 +7,9 @@ printftest flag_width_type_u_tests[] = {
 	{" %1u ", 1, "si", {{.i=INT_MAX}}},
 	{" %5u ", 1, "si", {{.i=INT_MAX}}},
 	{" %10u ", 1, "si", {{.i=INT_MAX}}},
-	{" %15u ", 1, "su", {{.u=UINT_MAX}}},
+	{" %20u ", 1, "su", {{.u=UINT_MAX}}},
 	{" %15u ", 1, "si", {{.i=-177013}}},
+	{" %15u ", 1, "si", {{.i=INT_MIN}}},
 	{" %42u %42u", 2, "sii", {{.i=42}, {.i=-42}}}
 };
 

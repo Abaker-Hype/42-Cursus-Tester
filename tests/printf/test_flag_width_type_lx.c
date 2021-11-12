@@ -7,6 +7,9 @@ printftest flag_width_type_x_tests[] = {
 	{" %1x ", 1, "si", {{.i=INT_MAX}}},
 	{" %5x ", 1, "si", {{.i=INT_MAX}}},
 	{" %10x ", 1, "si", {{.i=INT_MAX}}},
+	{" %1x ", 1, "si", {{.i=INT_MIN}}},
+	{" %5x ", 1, "si", {{.i=INT_MIN}}},
+	{" %10x ", 1, "si", {{.i=INT_MIN}}},
 	{" %42x %42x", 2, "sii", {{.i=42}, {.i=-42}}} 
 };
 

@@ -5,8 +5,11 @@ printftest flag_width_type_d_tests[] = {
 	{" %5d ", 1, "si", {{.i=0}}},
 	{" %10d ", 1, "si", {{.i=0}}},
 	{" %1d ", 1, "si", {{.i=INT_MAX}}},
-	{" %5d ", 1, "si", {{.i=INT_MAX}}},
 	{" %10d ", 1, "si", {{.i=INT_MAX}}},
+	{" %20d ", 1, "si", {{.i=INT_MAX}}},
+	{" %1d ", 1, "si", {{.i=INT_MIN}}},
+	{" %10d ", 1, "si", {{.i=INT_MIN}}},
+	{" %20d ", 1, "si", {{.i=INT_MIN}}},
 	{" %42d %42d", 2, "sii", {{.i=42}, {.i=-42}}} 
 };
 

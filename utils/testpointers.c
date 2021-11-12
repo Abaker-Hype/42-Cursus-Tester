@@ -88,7 +88,23 @@ testfunc ftprintf[] = {
 	{&test_flag_space_type_d, &exists_printf, &tests_flag_space_type_d, "type_d_space", "Flag-Space", true},
 	{&test_flag_plus_no_effect, &exists_printf, &tests_flag_plus_no_effect, "no_effect_+", "Flag-Plus", true},
 	{&test_flag_plus_type_i, &exists_printf, &tests_flag_plus_type_i, "type_i_+", "Flag-Plus", true},
-	{&test_flag_plus_type_d, &exists_printf, &tests_flag_plus_type_d, "type_d_+", "Flag-Plus", true}
+	{&test_flag_plus_type_d, &exists_printf, &tests_flag_plus_type_d, "type_d_+", "Flag-Plus", true},
+	{&test_flag_dot_no_effect, &exists_printf, &tests_flag_dot_no_effect, "no_effect_dot", "Flag-Dot", true},
+	{&test_flag_dot_type_s, &exists_printf, &tests_flag_dot_type_s, "type_s_dot", "Flag-Dot", true},
+	{&test_flag_dot_type_i, &exists_printf, &tests_flag_dot_type_i, "type_i_dot", "Flag-Dot", true},
+	{&test_flag_dot_type_d, &exists_printf, &tests_flag_dot_type_d, "type_d_dot", "Flag-Dot", true},
+	{&test_flag_dot_type_u, &exists_printf, &tests_flag_dot_type_u, "type_u_dot", "Flag-dot", true},
+	{&test_flag_dot_type_x, &exists_printf, &tests_flag_dot_type_x, "type_x_dot", "Flag-dot", true},
+	{&test_flag_dot_type_X, &exists_printf, &tests_flag_dot_type_X, "type_X_dot", "Flag-dot", true},
+	{&test_flag_dot_type_p, &exists_printf, &tests_flag_dot_type_p, "type_p_dot", "Flag-dot", true},
+	{&test_flag_mix_type_percent, &exists_printf, &tests_flag_mix_type_percent, "type_%_mix", "Flag-Mix", true},
+	{&test_flag_mix_type_c, &exists_printf, &tests_flag_mix_type_c, "type_c_mix", "Flag-Mix", true},
+	{&test_flag_mix_type_s, &exists_printf, &tests_flag_mix_type_s, "type_s_mix", "Flag-Mix", true},
+	{&test_flag_mix_type_i, &exists_printf, &tests_flag_mix_type_i, "type_i_mix", "Flag-Mix", true},
+	{&test_flag_mix_type_d, &exists_printf, &tests_flag_mix_type_d, "type_d_mix", "Flag-Mix", true},
+	{&test_flag_mix_type_u, &exists_printf, &tests_flag_mix_type_u, "type_u_mix", "Flag-Mix", true},
+	{&test_flag_mix_type_x, &exists_printf, &tests_flag_mix_type_x, "type_x_mix", "Flag-Mix", true},
+	{&test_flag_mix_type_X, &exists_printf, &tests_flag_mix_type_X, "type_X_mix", "Flag-Mix", true}
 };
 
 
