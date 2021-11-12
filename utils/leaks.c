@@ -93,7 +93,7 @@ void	*malloc_track(size_t size, const char *file, int line, const char *func)
 
 void	free_track(void *p)
 {
-	if (!freeptr(p))cprintf("ERROR! Tried to Free pointer which wasn't Malloced\n",RED, DEFAULT);
+	if (!freeptr(p) && args.detail)cprintf("ERROR! Tried to Free pointer which wasn't Malloced\n",RED, DEFAULT);
 }
 
 bool	hasleaks()
