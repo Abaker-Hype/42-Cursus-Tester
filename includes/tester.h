@@ -117,6 +117,6 @@ char	*useroutput();
 bool	hasleaks();
 void	freeleaks();
 void	listleaks();
-void	free_track(void *ptr);
+void	free_track(void *ptr, bool check);
 
 #endif

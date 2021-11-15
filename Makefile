@@ -1,6 +1,6 @@
 #Start Settings
 TESTING = $(firstword $(MAKECMDGOALS))
-OS=$(shell uname);
+OS=$(shell uname)
 
 #Directories
 INCS = ./includes/
@@ -9,7 +9,7 @@ UTILS = ./utils/
 USRFLS = ./userfiles/
 
 #Testers list
-TESTERS = libft printf
+TESTERS = libft printf gnl
 
 #Strings
 IVDTEST = "Invalid or Not Coded (yet) Tester\n"
@@ -21,7 +21,7 @@ Usages: make [tester] [opt:funcname, groupname or "Bonus"] [(Only after a funcna
 Available Testers:
   libft (Not all bonuses added)
   printf
-  gnl(SoonTM)
+  gnl (Manditory Done)
   Whatever I decide to SUFFER on to add!
 
 Make sure this folder is outside the project you are wanting to Test!
@@ -40,15 +40,17 @@ ifeq ($(TESTING), libft)
 	LIB += -lft
 else ifeq ($(TESTING), printf)
 	LIB += -lftprintf
+else ifeq ($(TESTING), gnl)
+	LIB += -lgnl
 endif
 CC = gcc
 FLAGS = -Wno-constant-conversion -Wno-format-security -I$(INCS)
 MAC = $(LIB) -undefined dynamic_lookup
 LINUX = -lbsd -Wl,--whole-archive $(LIB) -Wl,--no-whole-archive -D LINUX
 RUN = tester
-ifeq ($(OS),Darwin;)
+ifeq ($(OS),Darwin)
 	FLAGS += $(MAC)
-else ifeq ($(OS),Linux;)
+else ifeq ($(OS),Linux)
 	FLAGS += $(LINUX)
 endif
 
@@ -60,10 +62,20 @@ $(TESTING):
 ifeq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
 	@./script.sh $(TESTING)
 	@echo -n Making User Files...
+ifneq ($(TESTING), gnl)
 	@make re -s -C $(USRFLS)
+else
+ifeq (,$(wildcard *bonus.c))
+	@gcc -c `find $(USRFLS) -type f -name "*bonus.c"`
+else
+	@gcc -c `find $(USRFLS) -type f \( -name "*line.c" -o -name "*utils.c" \)`
+endif
+	@ar rcs $(USRFLS)libgnl.a *.o
+	@rm -f *.o
+endif
 	@echo Done
 	@echo -n Compiling Tester...
-	@$(CC) $(UTILS)* tests/$(TESTING)/* $(FLAGS) -o $(RUN)
+	@$(CC) $(UTILS)*.c tests/$(TESTING)/*.c $(FLAGS) -o $(RUN)
 	@echo Done
 	@clear
 	@echo Beginning Tests

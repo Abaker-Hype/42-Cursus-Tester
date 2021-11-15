@@ -34,7 +34,7 @@ void	test_strjoin(int n, bool detail)
 	expected = strjoin(test.s1, test.s2);
 	if ((!result && expected) || (result && (!expected || strcmp(result, expected) != 0))) pass = false;
 	if (detail) resultinfo("s", result, expected);
-	if (result) free_track(result);
+	if (result) free_track(result, true);
 	if (expected) free(expected);
 	if (pass) setgrade(PASS);
 }

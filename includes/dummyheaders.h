@@ -1,14 +1,10 @@
 #ifndef DUMMY_HEADERS_H
 # define DUMMY_HEADERS_H
 
-#ifdef LIBFT_H
-# include "libft.h"
-#else
 typedef struct s_list{
 	void *content;
 	struct s_list *next;
 }	t_list;
-#endif
 
 //Libft Dummy
 int		ft_isalpha(int c) __attribute__((weak));
@@ -58,4 +54,6 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *)) __attrib
 //Printf Dummy
 int	ft_printf(const char *str, ...) __attribute__((weak));
 
+//GNL Dummy
+char *get_next_line(int fd) __attribute__((weak));
 #endif

@@ -107,12 +107,20 @@ testfunc ftprintf[] = {
 	{&test_flag_mix_type_X, &exists_printf, &tests_flag_mix_type_X, "type_X_mix", "Flag-Mix", true}
 };
 
+testfunc gnl[] = {
+	{&test_bad_inputs, &exists_gnl, &tests_bad_inputs, "bad_inputs", "Manditory", false},
+	{&test_buffer_1, &exists_gnl, &tests_buffer_1, "buffer_1", "Manditory", false},
+	{&test_buffer_42, &exists_gnl, &tests_buffer_42, "buffer_42", "Manditory", false},
+	{&test_buffer_215600, &exists_gnl, &tests_buffer_215600, "buffer_215600", "Manditory", false}
+};
+
 
 testfunc *gettestarry(tester t)
 {
 	switch (t){
 		case LIBFT: return (libft);
 		case PRINTF: return (ftprintf); 
+		case GNL: return (gnl);
 		default: return NULL;
 	}
 }
@@ -122,6 +130,7 @@ int gettestsize(tester t)
 	switch (t){
 		case LIBFT: return (arraysize(libft));
 		case PRINTF: return (arraysize(ftprintf));
+		case GNL: return (arraysize(gnl));
 		default: return (0);
 	}
 }

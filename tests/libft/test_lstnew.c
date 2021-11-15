@@ -29,7 +29,7 @@ void	test_lstnew(int n, bool detail)
 	expected = lstnew(test.data);
 	if (!result || result->content != expected->content) pass = false;
 	if (detail) resultinfo("s", result->content, expected->content);
-	if (result) free_track(result);
+	if (result) free_track(result, true);
 	free(expected);
 	if (pass) setgrade(PASS);
 }

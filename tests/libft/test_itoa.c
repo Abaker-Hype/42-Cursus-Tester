@@ -35,7 +35,7 @@ void	test_itoa(int n, bool detail)
 	expected = itoa(test.n);
 	if (!result || strcmp(result, expected) != 0) pass = false;
 	if (detail) resultinfo("s", result, expected);
-	if (result) free_track(result);
+	if (result) free_track(result, true);
 	free(expected);
 	if (pass) setgrade(PASS);
 }

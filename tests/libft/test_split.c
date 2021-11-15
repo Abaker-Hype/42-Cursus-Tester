@@ -32,14 +32,10 @@ static void freearry(char **arry, bool track)
 {
 	int i = 0;
 	while (arry[i]){
-		if (track) free_track(arry[i]);
-		else free(arry[i]);
+		free_track(arry[i], track);
 		i++;
 	}
-	if (arry){
-		if (track) free_track(arry);
-		else free(arry);
-	}	
+	if (arry) free_track(arry, track);
 }
 
 static bool chksplits(char **result, char **expected)

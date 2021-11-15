@@ -39,7 +39,7 @@ void	test_substr(int n, bool detail)
 	if (result && (!expected || result == str || strcmp(result, expected) != 0)) pass = false;
 	else if (!result && result != expected) pass = false;
 	if (detail) resultinfo("s", result, expected);
-	if (result && result != str) free_track(result);
+	if (result && result != str) free_track(result, true);
 	if (expected) free(expected);
 	if (pass) setgrade(PASS);
 }

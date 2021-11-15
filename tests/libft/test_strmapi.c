@@ -34,7 +34,7 @@ void	test_strmapi(int n, bool detail)
 	expected = strmapi(test.str, &apply);
 	if ((!result && expected) || (result && (!expected || strcmp(result, expected) != 0))) pass = false;
 	if (detail) resultinfo("s", result, expected);
-	if (result) free_track(result);
+	if (result) free_track(result, true);
 	if (expected) free(expected);
 	if (pass) setgrade(PASS);
 }

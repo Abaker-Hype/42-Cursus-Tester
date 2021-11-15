@@ -17,6 +17,7 @@ checkpath(){
 		echo "${PATHERROR}"
 		exit 1
 	fi
+	echo $1
 }
 
 
@@ -24,11 +25,11 @@ checkpath(){
 if (($# != 1)); then exit 1; fi
 case $1 in
 	(libft)
-		checkpath ${LIBFT};;
+		LOC=$(checkpath ${LIBFT});;
 	(printf)
-		checkpath ${PRINTF};;
+		LOC=$(checkpath ${PRINTF});;
 	(gnl)
-		checkpath ${GNL};;
+		LOC=$(checkpath ${GNL});;
 	(*)
 		echo "Error No Valid Tester"
 		exit 1;
@@ -37,16 +38,7 @@ echo -n "Removing old files..."
 rm -rf ${USRFLS}
 echo "Done"
 echo -n "Copying User Files..."
-case $1 in
-	(libft)
-		cp -a ${LIBFT} ${USRFLS};;
-	(printf)
-		cp -a ${PRINTF} ${USRFLS};;
-	(gnl)
-		cp -a ${GNL} ${USRFLS};;
-	(*)
-		;;
-esac
+cp -a ${LOC} ${USRFLS}
 echo "Done"
 echo -n "Inserting Macros to User Headers..."
 HEADERS=$(find ${USRFLS} -type f -name '*.h')

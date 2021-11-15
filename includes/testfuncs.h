@@ -291,4 +291,28 @@ void    test_flag_mix_type_u(int n, bool detail) __attribute__((weak));
 void    test_flag_mix_type_x(int n, bool detail) __attribute__((weak));
 void    test_flag_mix_type_X(int n, bool detail) __attribute__((weak));
 //void    test_type_(int n, bool detail) __attribute__((weak));
+
+//GNL
+typedef struct {
+	char *file;
+	int buffer;
+} gnltest;
+
+//GNL Core
+void	gnlcore(gnltest test, int n, bool detail) __attribute__((weak));
+
+//GNL Exists
+bool	exists_gnl() __attribute__((weak));
+
+//GNL Tests
+int     tests_bad_inputs() __attribute__((weak)); 
+int     tests_buffer_1() __attribute__((weak));
+int     tests_buffer_42() __attribute__((weak));
+int     tests_buffer_215600() __attribute__((weak));
+
+//GNL Test Func
+void    test_bad_inputs(int n, bool detail) __attribute__((weak));
+void    test_buffer_1(int n, bool detail) __attribute__((weak));
+void    test_buffer_42(int n, bool detail) __attribute__((weak));
+void    test_buffer_215600(int n, bool detail) __attribute__((weak));
 #endif
