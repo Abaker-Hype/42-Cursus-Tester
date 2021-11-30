@@ -26,7 +26,7 @@ Available Testers:
 
 Make sure this folder is outside the project you are wanting to Test!
 To update project paths for testing please edit the script.sh file (The Path variables are at the top)
-If you want to ake sure your Bonuses get tested then have the Bonus Flag in your Makefiles Make Re target
+If you want to make sure your Bonuses get tested then have the Bonus Flag in your Makefiles Make Re target
 
 Note this is in its pretty early stages. Not every feature is added yet!
 If you have any ideas/bugs/errors please let me know.
@@ -65,7 +65,8 @@ ifeq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
 ifneq ($(TESTING), gnl)
 	@make re -s -C $(USRFLS)
 else
-ifeq (,$(wildcard *bonus.c))
+ifneq (,`find $(USRFLS) -type f -name "*bonus.c"`)
+	@echo making bonus
 	@gcc -c `find $(USRFLS) -type f -name "*bonus.c"`
 else
 	@gcc -c `find $(USRFLS) -type f \( -name "*line.c" -o -name "*utils.c" \)`

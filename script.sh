@@ -45,7 +45,7 @@ HEADERS=$(find ${USRFLS} -type f -name '*.h')
 if [[ -n "$HEADERS" ]]; then
 	for x in ${HEADERS}
 	do
-		echo "#include \"macros.h\"" >> $x
+		printf "\n#include \"macros.h\"" >> $x
 		DIR=`dirname $x`
 		`cp -a ./includes/macros.h ${DIR}`
 	done
