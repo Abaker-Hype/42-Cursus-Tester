@@ -3,7 +3,7 @@
 #Libs locations
 LIBFT=../libft/
 PRINTF=../ft_printf/
-GNL=../getnextline/
+GNL=../get_next_line/
 
 #Dont touch anything under this (Unless you know what your are doing and are adding in a new project to test)
 USRFLS=./userfiles/
