@@ -1,7 +1,8 @@
 #include "tester.h"
 
 typedef struct s_case{
-	char *str;	
+	char *str;
+	bool segv;
 } t_case;
 
 t_case putendl_fd_tests[] = {
@@ -9,7 +10,7 @@ t_case putendl_fd_tests[] = {
 	{"012345679"},
 	{"／人 ◕ ‿‿ ◕ 人＼"},
 	{"\n\n\n\n\n\n\n\n\n"},
-	{NULL}
+	{NULL, true}
 };
 
 int tests_putendl_fd()
@@ -27,6 +28,7 @@ void	test_putendl_fd(int n, bool detail)
 	bool pass = true;
 	t_case test = putendl_fd_tests[n];
 	char *expected = NULL;
+	if (test.segv) passsegv();
 	int len = 0;
 	if (detail) testinfo("si", n + 1, test.str, 1);
 	ft_putendl_fd(test.str, 1);

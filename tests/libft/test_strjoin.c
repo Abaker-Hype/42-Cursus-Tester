@@ -3,6 +3,7 @@
 typedef struct s_case{
 	char *s1;
 	char *s2;
+	bool segv;
 } t_case;
 
 t_case strjoin_tests[] = {
@@ -10,8 +11,8 @@ t_case strjoin_tests[] = {
 	{"test",""},
 	{"","test"},
 	{"",""},
-	{NULL, "test"},
-	{"test", NULL}
+	{NULL, "test", true},
+	{"test", NULL, true}
 };
 
 int tests_strjoin()
@@ -29,6 +30,7 @@ void	test_strjoin(int n, bool detail)
 	bool pass = true;
 	t_case test = strjoin_tests[n];
 	char *result, *expected;
+	if (test.segv) passsegv();
 	if (detail) testinfo("ss", n + 1, test.s1, test.s2);
 	result = ft_strjoin(test.s1, test.s2);
 	expected = strjoin(test.s1, test.s2);
