@@ -13,7 +13,7 @@ t_case strtrim_tests[] = {
 	{"123abcdef","321"},
 	{"abcdef123", "321"},
 	{"No Set", ""},
-	{"No Set", NULL},
+	{"No Set", NULL, true},
 	{"abcde177013vwxyz", "0123456789"},
 	{NULL, "rip", true}
 };
