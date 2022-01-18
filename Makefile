@@ -65,8 +65,7 @@ ifeq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
 ifneq ($(TESTING), gnl)
 	@make re -s -C $(USRFLS)
 else
-ifneq (,`find $(USRFLS) -type f -name "*bonus.c"`)
-	@echo making bonus
+ifeq (,`find $(USRFLS) -type f -name "*bonus.c"`)
 	@gcc -c `find $(USRFLS) -type f -name "*bonus.c"`
 else
 	@gcc -c `find $(USRFLS) -type f \( -name "*line.c" -o -name "*utils.c" \)`
