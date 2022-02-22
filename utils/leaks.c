@@ -6,7 +6,6 @@ typedef struct	s_malloc{
 	int				line;
 	const char		*func;
 	size_t			size;
-	bool			freed;
 	struct s_malloc	*next;
 }	t_malloc;
 
@@ -22,7 +21,6 @@ static t_malloc *newnode(void *p, const char *file, int line, const char *func, 
 	new->line = line;
 	new->func = func;
 	new->size = size;
-	new->freed = false;
 	new->next = NULL;
 	return (new);
 }
@@ -42,7 +40,7 @@ static t_malloc *findnode(void *ptr)
 {
 	t_malloc *curr = leaks;
 	while (curr){
-		if (curr->p == ptr && !curr->freed) break;
+		if (curr->p == ptr) break;
 		curr = curr->next;
 	}
 	return (curr);
@@ -50,11 +48,22 @@ static t_malloc *findnode(void *ptr)
 
 static bool	freeptr(void *ptr)
 {
-	t_malloc *node = findnode(ptr);
+	t_malloc *node = leaks, *prev = NULL;
 	if (!node) return (false);
-	free(node->p);
-	node->freed = true;
-	return (true);
+	while (node && node->p != ptr){
+		prev = node;
+		node = node->next;
+	}
+	if (node->p == ptr){
+		if (prev)
+			prev->next = node->next;
+		else
+			leaks = node->next;
+		free(ptr);
+		free(node);
+		return (true);
+	}
+	return (false);
 }
 
 static bool comparemalloc(t_malloc *m1, t_malloc *m2)
@@ -78,7 +87,7 @@ static int	counttimes(t_malloc *start)
 	int i = 0;
 	t_malloc *curr = start;
 	while (curr){
-		if (!curr->freed && comparemalloc(curr, start)) i++;
+		if (comparemalloc(curr, start)) i++;
 		curr = curr->next;
 	}
 	return (i);
@@ -99,32 +108,28 @@ void	free_track(void *p, bool check)
 
 bool	hasleaks()
 {
-	t_malloc *curr = leaks;
-	while (curr){
-		if (!curr->freed) return (true);
-		curr = curr->next;
-	}
-	return (false);
+	return (leaks != NULL);
 }
 
 void	freeleaks()
 {
 	t_malloc *curr = leaks, *next = NULL;
 	while (curr){
-		if (!curr->freed) free(curr->p);
-		curr = curr->next;
+		next = curr->next;
+		free(curr->p);
 		free(curr);
 		curr = next;
 	}
+	leaks = NULL;
 }
 
 void	listleaks()
 {
 	t_malloc *curr = leaks;
 	while (curr){
-		if (!curr->freed){
+		if (isunique(curr))
 			cprintf(LEAK, YELLOW, DEFAULT, curr->file, curr->line, curr->func, counttimes(curr));
-		}
 		curr = curr->next;
 	}
+	freeleaks();
 }
