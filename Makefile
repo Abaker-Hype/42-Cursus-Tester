@@ -11,7 +11,7 @@ OBJDIR = ./compiled/
 
 #Testers list
 TESTERS = libft printf gnl
-IVDTEST = "Invalid or Not Coded (yet) Tester\n"
+IVDTEST = "Invalid or Not Coded (yet) Tester"
 ifneq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
 $(error $(IVDTEST))
 endif
@@ -69,7 +69,7 @@ endif
 all:
 	@echo "$$INFO"
 
-$(TESTING): $(RUN)
+$(TESTING): clean $(RUN)
 	@echo Beginning Tests
 	@./$(RUN) $(MAKECMDGOALS)
 	@rm -rf $(RUN) $(USRFLS)
@@ -103,6 +103,9 @@ $(OBJDIR)%.o: $(UTILS)/%.c | $(OBJDIR)
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
+
+clean:
+	@rm -rf $(RUN) $(USRFLS)
 
 %:
 	@:
