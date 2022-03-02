@@ -40,6 +40,15 @@ echo "Done"
 echo -n "Copying User Files..."
 cp -a ${LOC} ${USRFLS}
 echo "Done"
+echo -n "Checking Norm..."
+ERROR=$(norminette ${USRFLS} | grep "Error")
+if [[ -n "$ERROR" ]]; then
+	printf "\e[91mFail\n"
+	norminette ${USRFLS} | grep "Error"
+else
+	printf "\e[92mPass"
+fi
+printf "\e[0m\n"
 echo -n "Inserting Macros to User Headers..."
 HEADERS=$(find ${USRFLS} -type f -name '*.h')
 if [[ -n "$HEADERS" ]]; then
