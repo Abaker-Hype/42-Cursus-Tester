@@ -7,12 +7,16 @@ INCS = ./includes/
 TESTS = ./tests/
 UTILS = ./utils/
 USRFLS = ./userfiles/
+OBJDIR = ./compiled/
 
 #Testers list
 TESTERS = libft printf gnl
+IVDTEST = "Invalid or Not Coded (yet) Tester"
+ifneq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
+$(error $(IVDTEST))
+endif
 
 #Strings
-IVDTEST = "Invalid or Not Coded (yet) Tester\n"
 define INFO
 Welcome to this pile of trash
 
@@ -34,7 +38,14 @@ Discord = HypeSwarm#7837
 endef
 export INFO
 
-#compile
+#SRC/OBJS
+TESTPTRS := $(UTILS)testpointers.c
+UTILSRC := $(wildcard $(UTILS)*.c)
+UTILSRC := $(filter-out $(TESTPTRS), $(UTILSRC))
+UTILOBJ := $(addprefix $(OBJDIR), $(notdir $(UTILSRC:.c=.o)))
+TESTSRC := $(wildcard $(TESTS)$(TESTING)/*.c)
+
+#Compile Flags
 LIB = -L$(USRFLS)
 ifeq ($(TESTING), libft)
 	LIB += -lft
@@ -58,13 +69,23 @@ endif
 all:
 	@echo "$$INFO"
 
-$(TESTING):
-ifeq ($(TESTING), $(filter $(TESTING), $(TESTERS)))
+$(TESTING): clean $(RUN)
+	@echo Beginning Tests
+	@./$(RUN) $(MAKECMDGOALS)
+	@rm -rf $(RUN) $(USRFLS)
+
+$(RUN): $(USRFLS) $(UTILOBJ)
+	@$(CC) $(FLAGS) $(UTILOBJ) $(TESTSRC) $(TESTPTRS) -o $(RUN)
+	@echo Done
+
+$(USRFLS):
+	@clear
 	@./script.sh $(TESTING)
 	@echo -n Making User Files...
-ifneq ($(TESTING), gnl)
+ifneq ($(TESTING), gnl) ##Tester Check
 	@make re -s -C $(USRFLS)
 else
+##GNL Specific Compile
 ifeq (,`find $(USRFLS) -type f -name "*bonus.c"`)
 	@gcc -c `find $(USRFLS) -type f -name "*bonus.c"`
 else
@@ -72,18 +93,19 @@ else
 endif
 	@ar rcs $(USRFLS)libgnl.a *.o
 	@rm -f *.o
-endif
+##End GNL Specific Compile
+endif ##End tester Check
 	@echo Done
 	@echo -n Compiling Tester...
-	@$(CC) $(UTILS)*.c tests/$(TESTING)/*.c $(FLAGS) -o $(RUN)
-	@echo Done
-	@clear
-	@echo Beginning Tests
-	@./$(RUN) $(MAKECMDGOALS)
+
+$(OBJDIR)%.o: $(UTILS)/%.c | $(OBJDIR)
+	@$(CC) -I$(INCS) -c $< -o $@
+
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+
+clean:
 	@rm -rf $(RUN) $(USRFLS)
-else
-	@printf $(IVDTEST)
-endif
 
 %:
 	@:

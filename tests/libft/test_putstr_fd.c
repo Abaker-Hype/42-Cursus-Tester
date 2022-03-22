@@ -1,14 +1,15 @@
 #include "tester.h"
 
 typedef struct s_case{
-	char *str;	
+	char *str;
+	bool segv;
 } t_case;
 
 t_case putstr_fd_tests[] = {
 	{"LOOK OUT JOHNNY!"},
 	{"012345679"},
 	{"／人 ◕ ‿‿ ◕ 人＼"},
-	{NULL}
+	{NULL, true}
 };
 
 int tests_putstr_fd()
@@ -26,6 +27,7 @@ void	test_putstr_fd(int n, bool detail)
 	bool pass = true;
 	t_case test = putstr_fd_tests[n];
 	char *expected = NULL;
+	if (test.segv) passsegv();
 	int len = 0;
 	if (detail) testinfo("si", n + 1, test.str, 1);
 	ft_putstr_fd(test.str, 1);

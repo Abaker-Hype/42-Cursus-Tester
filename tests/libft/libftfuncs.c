@@ -18,7 +18,9 @@ char *substr(char *str, int start, int len)
 
 char *strjoin(char *s1, char *s2)
 {
-	if (!s1 || !s2) return (NULL);
+	if (!s1 && !s2) return (NULL);
+	if (!s1) s1 = "";
+	if (!s2) s2 = "";
 	char *join = malloc(sizeof(char) * (strlen(s1) + strlen(s2)));
 	if (!join) return (NULL);
 	int i, j;

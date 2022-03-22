@@ -32,7 +32,10 @@ void	test_substr(int n, bool detail)
 	char *str = "Some random string to get a substr from";
 	char *result, *expected;
 	t_case test = substr_tests[n];
-	if (test.segv) str = NULL;
+	if (test.segv){ 
+		str = NULL;
+		passsegv();
+	}
 	if (detail) testinfo("sii", n + 1, str, test.start, test.len);
 	result = ft_substr(str, test.start, test.len);
 	expected = substr(str, test.start, test.len);

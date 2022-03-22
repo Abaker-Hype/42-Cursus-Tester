@@ -19,15 +19,13 @@ void printgrade()
 {
 	char grade = 'F';
 	colour c = RED;
-	if (args.detail){
-		if (segvpass && result == SEGV) cprintf(SEGVPASS, YELLOW, DEFAULT);
-		if (hasleaks()) listleaks();
-		cprintf("Grade: ", LBLUE, DEFAULT);
-	}
+	if (args.detail && segvpass && result == SEGV)	cprintf(SEGVPASS, YELLOW, DEFAULT);
 	switch (result){
 		case PASS:
-			if (hasleaks()) grade = 'L';
-			else {	
+			if (hasleaks()){
+				grade = 'L';
+				if (args.detail) listleaks();
+			}else {	
 				grade = 'P';
 				c = GREEN;
 			}
@@ -47,8 +45,8 @@ void printgrade()
 			break;
 		default:;
 	}
+	if (args.detail) cprintf("Grade: ", LBLUE, DEFAULT);
 	cprintf("%c", c, DEFAULT, grade);
-	if (hasleaks()) freeleaks();
 	if (useroutput()) resetprinted();
 }
 

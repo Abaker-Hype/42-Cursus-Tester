@@ -2,7 +2,8 @@
 
 typedef struct s_case{
 	char *str;
-	char *set;	
+	char *set;
+	bool segv;
 } t_case;
 
 t_case strtrim_tests[] = {
@@ -12,9 +13,9 @@ t_case strtrim_tests[] = {
 	{"123abcdef","321"},
 	{"abcdef123", "321"},
 	{"No Set", ""},
-	{"No Set", NULL},
+	{"No Set", NULL, true},
 	{"abcde177013vwxyz", "0123456789"},
-	{NULL, "rip"}
+	{NULL, "rip", true}
 };
 
 int tests_strtrim()
@@ -32,6 +33,7 @@ void	test_strtrim(int n, bool detail)
 	bool pass = true;
 	t_case test = strtrim_tests[n];
 	char *result, *expected;
+	if (test.segv) passsegv();
 	if (detail) testinfo("ss", n + 1, test.str, test.set);
 	result = ft_strtrim(test.str, test.set);
 	expected = strtrim(test.str, test.set);
