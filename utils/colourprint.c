@@ -33,7 +33,7 @@ static void	cvprintf(char *type, char *mem, int size)
 void	testinfo(char *format, int test,...)
 {
 	va_list args;
-	char c;
+	int c;
 	char *str;
 	cprintf("Test No. ", LBLUE, DEFAULT);
 	cprintf("%i\n", YELLOW, DEFAULT, test);
@@ -47,7 +47,8 @@ void	testinfo(char *format, int test,...)
 			case 'u' :printf("unsigned int[%u] ", va_arg(args, unsigned int));
 				break;
 			case 'c': c = va_arg(args, int);
-				cvprintf("char", &c, 1);
+				cvprintf("char", (char *)&c, 1);
+				if (c > 256) printf("\e[2D + %i] ", c-(char)c);
 				break;
 			case 's': str = va_arg(args, char *);
 				if (str) cvprintf("str", str, strlen(str));
