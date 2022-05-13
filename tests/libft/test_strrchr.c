@@ -3,7 +3,7 @@
 typedef struct s_case{
 	char *str;
 	int slen;
-	char c;
+	int c;
 	bool segv;
 } t_case;
 
@@ -13,7 +13,8 @@ t_case strrchr_tests[] = {
 	{"abc", 3, 'b'},
 	{"abbbbbbbbc", 10, 'b'},
 	{"abc", 3, 'd'},
-	{"abc\0zyx", 7, 'z'}
+	{"abc\0zyx", 7, 'z'},
+	{"abc", 3, 'a' + 256}
 };
 
 int tests_strrchr()
